@@ -1,0 +1,33 @@
+.ol-mouse-position-ltmap{
+  color:#66b166;
+  position: absolute;
+  font-weight: 500;
+  bottom:8px;
+  right:8px;
+}
+/*鹰眼控件展开时的控件外边框*/
+.myOverview:not(.ol-collapsed){
+  border:1px solid black;
+}
+/*鹰眼控件地图容器边框样式*/
+.myOverview .ol-overviewmap-map{
+  border:none;
+  width:200px;
+  height: 100px;
+}
+/*鹰眼控件中显示当前窗口区域的边框样式*/
+.myOverview .ol-overviewmap-box{
+  border:2px solid red;
+}
+ /*鹰眼控件展开时其控件按钮图标的样式*/
+.myOverview:not(.ol-collapsed) button{
+  bottom:auto;
+  left:auto;
+  right:1px;
+  top:1px;
+}
+.ol-overviewmap{
+  left: auto !important;
+  right:0.5em;
+  bottom: 0.5em;
+}
