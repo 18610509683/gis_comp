@@ -24,8 +24,7 @@ export default {
     addLayer(){
       //注意顺序
       this.layer = new KMap.CustomLayer('http://47.107.126.107:9000/map/foshan/{z}/{y}/{x}.png')
-      window.map.setCenter(new KMap.LngLat(112.85,22.88))
-      window.map.setZoom(12)
+      window.map.setZoomAndCenter(12,new KMap.LngLat(112.85,22.88))
     },
     showLayer(){
       if(this.layer){
