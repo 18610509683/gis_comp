@@ -1,6 +1,6 @@
 import Common from "./Common"
 /**
- * @description LTMap.LngLat 经纬度
+ * @description KMap.LngLat 经纬度
 */
 class LngLat{
   /**
@@ -54,7 +54,7 @@ class LngLat{
 
 	/**
 	 * @description 判断当前坐标对象与传入坐标对象是否相等
-	 * @param {LTMap.LngLat} lnglat 格式的经纬度，必填
+	 * @param {KMap.LngLat} lnglat 格式的经纬度，必填
 	 * @returns {boolean} 坐标相等返回true，坐标不相等返回false
 	 */
   equals(lnglat) {

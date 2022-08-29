@@ -4,7 +4,7 @@ import * as proj from 'ol/proj'
 import * as interaction from 'ol/interaction'
 import SimpleLayer from './SimpleLayer'
 import 'ol/ol.css'
-import './css/LTMap.css'
+import './css/KMap.css'
 import * as Enum from './Enum'
 import Common from './Common'
 import Scale from './Scale'
@@ -14,7 +14,7 @@ import LT2DMapConfig from '../config/LT2DMapConfig'
 import * as Extent from 'ol/extent'
 import Overlay  from 'ol/Overlay'
 /**
- * @description LTMap.Map 地图类
+ * @description KMap.Map 地图类
 */
 class Map {
 	/**
@@ -286,13 +286,13 @@ class Map {
 
 	/**
 	 * @description 获取地图容器尺寸
-	 * @returns LTMap.Size格式的尺寸
+	 * @returns KMap.Size格式的尺寸
 	 * @memberof Map
 	 */
 	getSize() {
 		let size = this.map.getSize()
 		console.log(Common)
-		size = Common.MapSize2LTMapSize(size)
+		size = Common.MapSize2KMapSize(size)
 		return size
 	}
 	
@@ -308,34 +308,34 @@ class Map {
 	
 	/**
 	 * @description 获取地图中心
-	 * @returns 地图中心，LTMap.LngLat对象格式
+	 * @returns 地图中心，KMap.LngLat对象格式
 	 * @memberof Map
 	 */
 	getCenter() {
 		let center = this.view.getCenter()
 		center = proj.toLonLat(center)
-		return Common.MapLngLat2LTMapLngLat(center)
+		return Common.MapLngLat2KMapLngLat(center)
 	}
 	
 	/**
 	 * @description 设置地图中心
-	 * @param {LTMap.LngLat} position 地图中心位置，LTMap.LngLat对象格式，必填
+	 * @param {KMap.LngLat} position 地图中心位置，KMap.LngLat对象格式，必填
 	 * @memberof Map
 	 */
 	setCenter(position) {
-		let centerlnglat = Common.LTMapLngLat2MapLngLat(position)
+		let centerlnglat = Common.KMapLngLat2MapLngLat(position)
 		let center = proj.fromLonLat(centerlnglat)
 		this.view.setCenter(center)
 	}
 	
 	/**
 	 * @description 地图中心点平移至指定点位置
-	 * @param {LTMap.LngLat} point 指定点经纬度坐标，LTMap.LngLat对象格式，必填
+	 * @param {KMap.LngLat} point 指定点经纬度坐标，KMap.LngLat对象格式，必填
 	 * @param {number} zoom 缩放级别，选填参数，不填则使用当前缩放级别
 	 * @memberof Map
 	 */
 	panTo(point,zoom) {
-		point = Common.LTMapLngLat2MapLngLat(point)
+		point = Common.KMapLngLat2MapLngLat(point)
 		let center = proj.fromLonLat(point)
 		if(zoom) {
 			this.view.animate({center:center},{zoom:zoom})
@@ -470,7 +470,7 @@ class Map {
 	
 	/**
 	 * @description 缩放到经纬度数组范围
-	 * @param {Array} lngLatArray LTMap.LngLat格式的经纬度坐标数组，必填
+	 * @param {Array} lngLatArray KMap.LngLat格式的经纬度坐标数组，必填
 	 * @param {number} duration 选填参数，动画时长(单位:毫秒)，不填则使用默认的0毫秒
 	 * @memberof Map
 	 */
@@ -478,7 +478,7 @@ class Map {
 		duration = (duration != undefined)? duration : 0
 		let coordinateArray = new Array()
 		for(let i=0; i<lngLatArray.length; i++) {
-			let point = Common.LTMapLngLat2MapLngLat(lngLatArray[i])
+			let point = Common.KMapLngLat2MapLngLat(lngLatArray[i])
 			coordinateArray.push(proj.fromLonLat(point))
 		}
 		let extentBound = new Extent.boundingExtent(coordinateArray)
@@ -591,12 +591,12 @@ class Map {
 	/**
 	 * @description 设置地图中心和缩放级别
 	 * @param {number} zoom 缩放级别，必填
-	 * @param {LTMap.LngLat} center 地图中心 LTMap.LngLat对象格式，必填
+	 * @param {KMap.LngLat} center 地图中心 KMap.LngLat对象格式，必填
 	 * @param {boolean} animate 选填，是否使用缓冲动画，默认为false
 	 * @memberof Map
 	 */
 	setZoomAndCenter(zoom,center,animate) {
-		let centerlnglat = Common.LTMapLngLat2MapLngLat(center)
+		let centerlnglat = Common.KMapLngLat2MapLngLat(center)
 		center = proj.fromLonLat(centerlnglat)
 		if(animate) {
 			this.view.animate({center:center,zoom:zoom})
@@ -609,7 +609,7 @@ class Map {
 	
 	/**
 	 * @description 获取地图经纬度矩形范围
-	 * @returns {LTMap.Bounds} 地图经纬度矩形范围，LTMap.Bounds格式
+	 * @returns {KMap.Bounds} 地图经纬度矩形范围，KMap.Bounds格式
 	 * @memberof Map
 	 */
 	getBounds() {
@@ -617,18 +617,18 @@ class Map {
 		let southWest = proj.toLonLat([bounds[0],bounds[1]])
 		let northEast = proj.toLonLat([bounds[2],bounds[3]])
 		bounds = [southWest[0],southWest[1],northEast[0],northEast[1]]
-		let mapBound = Common.MapBounds2LTMapBounds(bounds)//将OL的Bounds格式转换成LTMap的Bounds格式
+		let mapBound = Common.MapBounds2KMapBounds(bounds)//将OL的Bounds格式转换成KMap的Bounds格式
 		return mapBound
 	}
 	
 	/**
 	 * @description 设置地图经纬度矩形范围
-	 * @param {LTMap.Bounds} bound 地图经纬度矩形范围，LTMap.Bounds格式，必填
+	 * @param {KMap.Bounds} bound 地图经纬度矩形范围，KMap.Bounds格式，必填
 	 * @memberof Map
 	 */
 	setBounds(bound) {
 		let lnglatArray = new Array()
-		let mapBound = Common.LTMapBounds2MapBounds(bound)//将LTMap的Bounds格式转换成OL的Bounds格式
+		let mapBound = Common.KMapBounds2MapBounds(bound)//将KMap的Bounds格式转换成OL的Bounds格式
 		lnglatArray.push(proj.fromLonLat([mapBound[0],mapBound[1]]))
 		lnglatArray.push(proj.fromLonLat([mapBound[2],mapBound[3]]))
 		let bounds = new Extent.boundingExtent(lnglatArray)
@@ -637,53 +637,53 @@ class Map {
 	
 	/**
 	 * @description 平面地图像素坐标转经纬度坐标
-	 * @param {LTMap.Pixel} pixel 平面地图像素坐标，格式为LTMap.Pixel对象，必填
-	 * @returns {LTMap.LngLat} 经纬度坐标，格式为LTMap.LngLat对象
+	 * @param {KMap.Pixel} pixel 平面地图像素坐标，格式为KMap.Pixel对象，必填
+	 * @returns {KMap.LngLat} 经纬度坐标，格式为KMap.LngLat对象
 	 * @memberof Map
 	 */
 	pixelToLngLat(pixel) {
-		pixel = Common.LTMapPixel2MapPixel(pixel)
+		pixel = Common.KMapPixel2MapPixel(pixel)
 		let lnglat = new proj.toLonLat(pixel)
-		return Common.MapLngLat2LTMapLngLat(lnglat)
+		return Common.MapLngLat2KMapLngLat(lnglat)
 	}
 	
 	/**
 	 * @description 经纬度坐标转平面地图像素坐标
-	 * @param {LTMap.LngLat} lnglat 经纬度坐标，格式为LTMap.LngLat对象，必填
-	 * @returns {LTMap.Pixel} 地图像素坐标，格式为LTMap.Pixel对象
+	 * @param {KMap.LngLat} lnglat 经纬度坐标，格式为KMap.LngLat对象，必填
+	 * @returns {KMap.Pixel} 地图像素坐标，格式为KMap.Pixel对象
 	 * @memberof Map
 	 */
 	lnglatToPixel(lnglat) {
-		lnglat = Common.LTMapLngLat2MapLngLat(lnglat)
+		lnglat = Common.KMapLngLat2MapLngLat(lnglat)
 		let pixel = proj.fromLonLat(lnglat)
-		return Common.MapPixel2LTMapPixel(pixel)
+		return Common.MapPixel2KMapPixel(pixel)
 	}
 	
 	/**
 	 * @description 地图容器屏幕坐标转经纬度坐标
-	 * @param {LTMap.Pixel} pixel 地图容器像素，格式为LTMap.Pixel对象，必填
-	 * @returns {LTMap.LngLat} 返回LTMap.LngLat格式的经纬度
+	 * @param {KMap.Pixel} pixel 地图容器像素，格式为KMap.Pixel对象，必填
+	 * @returns {KMap.LngLat} 返回KMap.LngLat格式的经纬度
 	 * @memberof Map
 	 */
 	containerToLngLat(pixel) {
-		pixel = Common.LTMapPixel2MapPixel(pixel)
+		pixel = Common.KMapPixel2MapPixel(pixel)
 		let lnglat =this.map.getCoordinateFromPixel(pixel)
 		lnglat = proj.toLonLat(lnglat)
-		lnglat = Common.MapLngLat2LTMapLngLat(lnglat)
+		lnglat = Common.MapLngLat2KMapLngLat(lnglat)
 		return lnglat
 	}
 	
 	/**
 	 * @description 经纬度坐标转地图容器屏幕坐标
-	 * @param {LTMap.LngLat} lnglat 经纬度坐标，LTMap.LngLat格式的经纬度，必填
-	 * @returns {LTMap.Pixel} 返回地图容器像素，格式为LTMap.Pixel对象
+	 * @param {KMap.LngLat} lnglat 经纬度坐标，KMap.LngLat格式的经纬度，必填
+	 * @returns {KMap.Pixel} 返回地图容器像素，格式为KMap.Pixel对象
 	 * @memberof Map
 	 */
 	lngLatToContainer(lnglat) {
-		lnglat = Common.LTMapLngLat2MapLngLat(lnglat)
+		lnglat = Common.KMapLngLat2MapLngLat(lnglat)
 		let coordinate = proj.fromLonLat(lnglat)
 		let container =this.map.getPixelFromCoordinate(coordinate)
-		return Common.MapPixel2LTMapPixel(container)
+		return Common.MapPixel2KMapPixel(container)
 	}
 	
 	/**

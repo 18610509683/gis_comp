@@ -1,5 +1,5 @@
 /**
- * @description LTMap.Pixel 像素类
+ * @description KMap.Pixel 像素类
 */
 class Pixel{
   /**

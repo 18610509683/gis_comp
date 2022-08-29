@@ -8,11 +8,11 @@ import Stroke from 'ol/style/Stroke'
 import Icon from 'ol/style/Icon'
 import Overlay from 'ol/Overlay'
 import Common from './Common'
-import LTBaseObject from './LTBaseObject'
+import KBaseObject from './KBaseObject'
 /**
- * @description LTMap.Marker 点标记类
+ * @description KMap.Marker 点标记类
  */
-class Marker extends LTBaseObject{
+class Marker extends KBaseObject{
   /**
    * @description 初始化Marker构造函数
    * @param {number} lng lng 经度 必填
@@ -23,7 +23,7 @@ class Marker extends LTBaseObject{
    * @param {number} width  点标记尺寸宽度 必填
    * @param {number} height 点标记尺寸高度 必填
    * @param {JSON} param param.source 指定source 选填
-	 * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+	 * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
    * @constructor
    */
   constructor(lng,lat,url,offsetX,offsetY,width,height,param,mapInstance = null){
@@ -224,22 +224,22 @@ class Marker extends LTBaseObject{
 
 	/**
 	 * @description 获取点标记坐标
-	 * @returns {LTMap.LngLat} 返回LTMap.LngLat格式的经纬度
+	 * @returns {KMap.LngLat} 返回KMap.LngLat格式的经纬度
 	 */
 	getPosition() {
 		const vm = this
 		let position = proj.toLonLat(vm.point.getCoordinates())
-		position = Common.MapLngLat2LTMapLngLat(position)
+		position = Common.MapLngLat2KMapLngLat(position)
 		return position
 	}
 
 	/**
 	 * @description 设置点标记坐标
-	 * @param {LTMap.LngLat} lnglat 格式的点标记经纬度，必填
+	 * @param {KMap.LngLat} lnglat 格式的点标记经纬度，必填
 	 */
 	setPosition(lnglat) {
 		const vm = this
-		lnglat = Common.LTMapLngLat2MapLngLat(lnglat)
+		lnglat = Common.KMapLngLat2MapLngLat(lnglat)
 		let position = proj.fromLonLat(lnglat)
 		vm.point.setCoordinates(position)
 		// console.log(vm.source.getState())
@@ -250,7 +250,7 @@ class Marker extends LTBaseObject{
 
 	/**
    * @description 设置点标记动画
-   * @param { LTMap.LngLat } lnglat 目标位置
+   * @param { KMap.LngLat } lnglat 目标位置
    * @memberof Marker
    */
   setPositionAnimate(lnglat){
@@ -265,8 +265,8 @@ class Marker extends LTBaseObject{
 		vm.lastTime = currentTime
 		let point = vm.lastPoint
 		vm.lastPoint = lnglat
-    let begin = Common.LTMapLngLat2MapLngLat(vm.getPosition())
-    let end = Common.LTMapLngLat2MapLngLat(point)
+    let begin = Common.KMapLngLat2MapLngLat(vm.getPosition())
+    let end = Common.KMapLngLat2MapLngLat(point)
     let from = turf.point(begin)
     let to = turf.point(end)
     //将路径均匀切分，使小车匀速运动
@@ -310,7 +310,7 @@ class Marker extends LTBaseObject{
 					if (j >= ring.length - 1) {
 						return
 					}
-					let lnglat = new LTMap.LngLat(ring[j][0], ring[j][1])
+					let lnglat = new KMap.LngLat(ring[j][0], ring[j][1])
 
 					that.setPosition(lnglat)
 					j += 1
@@ -459,7 +459,7 @@ class Marker extends LTBaseObject{
 	/**
 	 * @description 设置点标记地图对象，传入null时，移除点标记，
 	 * 建议不使用此API，使用remove方法
-	 * @param {LTMap.Map} map 传入null，移除点标记
+	 * @param {KMap.Map} map 传入null，移除点标记
 	 */
 	setMap(mapInstance){
 		const vm = this
@@ -540,7 +540,7 @@ class Marker extends LTBaseObject{
       }else { 
         content = title
       }
-			let infoWindow = new LTMap.InfoWindow({
+			let infoWindow = new KMap.InfoWindow({
 				content: content,
 				position: lnglat,
 				offsetX: offsetX,

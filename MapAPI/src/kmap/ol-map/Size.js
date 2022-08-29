@@ -1,5 +1,5 @@
 /**
- * @description LTMap.Size 大小类
+ * @description KMap.Size 大小类
  */
 class Size{
   /**

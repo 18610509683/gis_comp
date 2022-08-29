@@ -1,7 +1,7 @@
 import Layer from 'ol/layer/Vector'
 import Source from 'ol/source/Vector'
 /**
- * @description LTMap.VectorLayer 矢量图层
+ * @description KMap.VectorLayer 矢量图层
  */
 class VectorLayer {
   /**

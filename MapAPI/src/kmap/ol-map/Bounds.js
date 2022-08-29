@@ -1,11 +1,11 @@
 import * as extent  from "ol/extent"
 /**
- * @description LTMap.Bounds 经纬度矩形范围类
+ * @description KMap.Bounds 经纬度矩形范围类
  */
 class Bounds{
   /**
-   * @param {LTMap.LngLat} southWest 矩形范围西南角坐标，必填，格式new LTMap.LngLat()
-   * @param {LTMap.LngLat} northEast 矩形范围东北角坐标，必填，格式new LTMap.LngLat()
+   * @param {KMap.LngLat} southWest 矩形范围西南角坐标，必填，格式new KMap.LngLat()
+   * @param {KMap.LngLat} northEast 矩形范围东北角坐标，必填，格式new KMap.LngLat()
    */
   constructor(southWest,northEast){
 		const vm = this
@@ -19,7 +19,7 @@ class Bounds{
 
 	/**
 	 * @description 判断指定点坐标是否在矩形范围内
-	 * @param {LTMap.LngLat} point 经纬度点，LTMap.LngLat格式，必填
+	 * @param {KMap.LngLat} point 经纬度点，KMap.LngLat格式，必填
 	 * @returns {boolean}在矩形范围内返回true，否则返回false
 	 */
   contains(point) {
@@ -35,19 +35,19 @@ class Bounds{
 
   /**
    * @description 获取中心点坐标
-   * @returns {LTMap.LngLat}中心点坐标，LTMap.LngLat格式
+   * @returns {KMap.LngLat}中心点坐标，KMap.LngLat格式
    */
 	getCenter() {
 		const vm = this
 		let lng = (vm.southWest.getLng() + vm.northEast.getLng()) / 2
 		let lat = (vm.southWest.getLat() + vm.northEast.getLat()) / 2
-		var center = new LTMap.LngLat(lng,lat)
+		var center = new KMap.LngLat(lng,lat)
 		return center
 	}
 
 	/**
 	 * @description 获取西南角坐标
-	 * @returns {LTMap.LngLat}西南角坐标，LTMap.LngLat格式
+	 * @returns {KMap.LngLat}西南角坐标，KMap.LngLat格式
 	 */
 	getSouthWest() {
 		const vm = this
@@ -56,7 +56,7 @@ class Bounds{
 
 	/**
 	 * @description 获取东北角坐标
-	 * @returns {LTMap.LngLat}东北角坐标，LTMap.LngLat格式
+	 * @returns {KMap.LngLat}东北角坐标，KMap.LngLat格式
 	 */
 	getNorthEast() {
 		const vm = this

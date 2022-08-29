@@ -1,12 +1,12 @@
 import Zoom from 'ol/control/Zoom'
 import ZoomSlider from 'ol/control/ZoomSlider'
-import LTBaseObject from './LTBaseObject'
+import KBaseObject from './KBaseObject'
 /**
- * @description LTMap.ToolBar 地图操作工具条类
+ * @description KMap.ToolBar 地图操作工具条类
  */
-class ToolBar extends LTBaseObject{
+class ToolBar extends KBaseObject{
   /**
-   * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+   * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
    * @memberof ToolBar
    */
   constructor(mapInstance = null){

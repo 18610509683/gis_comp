@@ -1,5 +1,5 @@
 import Map from  './Map'
-class LTBaseObject{
+class KBaseObject{
   constructor(mapInstance){
     const vm = this
 		//利通map实例
@@ -8,4 +8,4 @@ class LTBaseObject{
 		vm.map = vm.mapInstance.map
   }
 }
-export default LTBaseObject
+export default KBaseObject

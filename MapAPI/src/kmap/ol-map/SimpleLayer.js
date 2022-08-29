@@ -2,7 +2,7 @@ import Tile from 'ol/layer/WebGLTile'
 import XYZ from 'ol/source/XYZ'
 import * as Enum from './Enum'
 /**
- * @description LTMap.SimpleLayer 离线切片图层类
+ * @description KMap.SimpleLayer 离线切片图层类
  */
 class SimpleLayer {
   /**

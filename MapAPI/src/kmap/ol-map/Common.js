@@ -6,7 +6,7 @@ import Bounds from './Bounds'
 import { v4 as uuidv4 } from 'uuid'
 import Check from './Check'
 /**
- * @description LTMap.Common类 通用静态方法
+ * @description KMap.Common类 通用静态方法
  */
 class Common{
 	/**
@@ -55,10 +55,10 @@ class Common{
 	static ShowToolbarControl = LT2DMapConfig.ShowToolbarControl
 	/**
 	 * @description 利通地图像素转OpenLayers地图像素
-	 * @param {LTMap.Pixel} pixel LTMap.Pixel格式的像素，必填
+	 * @param {KMap.Pixel} pixel KMap.Pixel格式的像素，必填
 	 * @returns {Array} OpenLayers格式的像素，包含两个元素的数组[x,y]
 	*/
-	static LTMapPixel2MapPixel(pixel){
+	static KMapPixel2MapPixel(pixel){
 		let mapPixel = [pixel.getX(),pixel.getY()]
 		return mapPixel
 	}
@@ -66,19 +66,19 @@ class Common{
 	/**
 	 * @description OpenLayers地图像素转利通地图像素
 	 * @param {Array} pixel OpenLayers格式的像素，包含两个元素的数组[x,y]，必填
-	 * @returns {LTMap.Pixel} LTMap.Pixel格式的像素
+	 * @returns {KMap.Pixel} KMap.Pixel格式的像素
 	*/
-	static MapPixel2LTMapPixel(pixel) {
+	static MapPixel2KMapPixel(pixel) {
 		let ltPixel = new Pixel(pixel[0], pixel[1])
 		return ltPixel
 	}
 
 	/**
 	 * @description 利通地图像素尺寸转OpenLayers地图像素尺寸
-	 * @param {LTMap.Size} size LTMap.Size格式的尺寸，必填
+	 * @param {KMap.Size} size KMap.Size格式的尺寸，必填
 	 * @returns {Array} OpenLayers地图像素尺寸，包含两个元素的数组[width,height]
 	*/
-	static LTMapSize2MapSize(size) {
+	static KMapSize2MapSize(size) {
 		let mapSize = [size.getWidth(), size.getHeight()]
 		return mapSize
 	}
@@ -86,19 +86,19 @@ class Common{
 	/**
 	 * @description OpenLayers地图像素尺寸转利通地图像素尺寸
 	 * @param {Array} size OpenLayers地图像素尺寸，包含两个元素的数组[width,height]，必填
-	 * @returns {LTMap.Size} 格式的尺寸
+	 * @returns {KMap.Size} 格式的尺寸
 	*/
-	static MapSize2LTMapSize(size) {
+	static MapSize2KMapSize(size) {
 		let ltSize = new Size(size[0], size[1])
 		return ltSize
 	}
 
 	/**
 	 * @description 利通地图经纬度转OpenLayers地图经纬度
-	 * @param {LTMap.LngLat} lnglat LTMap.LngLat格式的经纬度，必填
+	 * @param {KMap.LngLat} lnglat KMap.LngLat格式的经纬度，必填
 	 * @returns {Array} OpenLayers的经纬度格式,包含两个元素的数组[lng,lat]
 	*/
-	static LTMapLngLat2MapLngLat(lnglat) {
+	static KMapLngLat2MapLngLat(lnglat) {
 		let alnglat = [lnglat.getLng(),lnglat.getLat()]
 		return alnglat
 	}
@@ -106,19 +106,19 @@ class Common{
 	/**
 	 * @description OpenLayers地图经纬度转利通地图经纬度
 	 * @param {Array} lnglat OpenLayers的经纬度格式,包含两个元素的数组[lng,lat]，必填
-	 * @returns {LTMap.LngLat} LTMap.LngLat格式的经纬度
+	 * @returns {KMap.LngLat} KMap.LngLat格式的经纬度
 	*/
-	static MapLngLat2LTMapLngLat(lnglat) {
+	static MapLngLat2KMapLngLat(lnglat) {
 		let ltlnglat = new LngLat(lnglat[0], lnglat[1])
 		return ltlnglat
 	}
 
 	/**
 	 * @description 利通地图经纬度矩形范围转OpenLayers地图经纬度矩形范围
-	 * @param {LTMap.Bounds} bounds LTMap.Bounds对象，必填
+	 * @param {KMap.Bounds} bounds KMap.Bounds对象，必填
 	 * @returns {Array} 西南角经度、西南角纬度、东北角经度、东北角纬度构成的数组
 	*/
-	static LTMapBounds2MapBounds(bounds) {
+	static KMapBounds2MapBounds(bounds) {
 		let array = new Array()
 		let southWest = bounds.getSouthWest()
 		let northEast = bounds.getNorthEast()
@@ -132,9 +132,9 @@ class Common{
 	/**
 	 * @description OpenLayers地图经纬度矩形范围转利通地图经纬度范围
 	 * @param {Array} bounds 西南角经度、西南角纬度、东北角经度、东北角纬度构成的数组，必填
-	 * @returns {LTMap.Bounds} LTMap.Bounds类型对象
+	 * @returns {KMap.Bounds} KMap.Bounds类型对象
 	*/
-	static MapBounds2LTMapBounds(bounds) {
+	static MapBounds2KMapBounds(bounds) {
 		let southWest = [bounds[0],bounds[1]]
 		let northEast = [bounds[2],bounds[3]]
 		southWest = new LngLat(southWest[0],southWest[1])
@@ -184,7 +184,7 @@ class Common{
 	static extend(des, src, override){
 		if(src instanceof Array){
 			for(let i = 0, len = src.length; i < len; i++)
-				LTMap.Common.extend(des, src[i], override)
+				KMap.Common.extend(des, src[i], override)
 		}
 		for( let i in src){
 			if(override || !(i in des)){

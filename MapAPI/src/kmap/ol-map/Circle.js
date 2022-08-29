@@ -5,14 +5,14 @@ import Style from 'ol/style/Style'
 import * as olExtent from 'ol/extent'
 import * as proj from 'ol/proj'
 import OLCircle from 'ol/geom/Circle'
-import LTBaseObject from './LTBaseObject'
+import KBaseObject from './KBaseObject'
 
 /**
- * @description LTMap.Circle 圆标记
+ * @description KMap.Circle 圆标记
  */
-class Circle extends LTBaseObject{
+class Circle extends KBaseObject{
   /**
-   * @description LTMap.Circle 构造函数
+   * @description KMap.Circle 构造函数
    * @param {JSON Object} lng 必填 param.lat 必填 param
    */
   /**
@@ -23,7 +23,7 @@ class Circle extends LTBaseObject{
    * @param {JSON} param param.storkeWidth圆外线宽度 选填;
    * param.strokeColor圆外线颜色 选填;
    * param.background 圆背景颜色 选填。
-   * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+   * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
    * @memberof Circle
    */
   constructor(lng,lat,radius,param,mapInstance = null){

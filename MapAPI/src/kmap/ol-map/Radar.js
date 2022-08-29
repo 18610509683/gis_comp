@@ -4,15 +4,15 @@ import Style from 'ol/style/Style'
 import Circle from 'ol/style/Circle'
 import Fill from 'ol/style/Fill'
 import * as proj from 'ol/proj'
-import LTBaseObject from './LTBaseObject'
+import KBaseObject from './KBaseObject'
 import Common from './Common'
 /**
- * @description LTMap.Radar 雷达效果类
+ * @description KMap.Radar 雷达效果类
 */
-class Radar extends LTBaseObject{
+class Radar extends KBaseObject{
   /**
    * @param {*} params
-   * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+   * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
    * @memberof Radar
    */
   constructor(params,mapInstance = null){

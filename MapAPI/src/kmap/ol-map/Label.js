@@ -5,16 +5,16 @@ import Style from 'ol/style/Style'
 import Fill from 'ol/style/Fill'
 import Stroke from 'ol/style/Stroke'
 import Text from 'ol/style/Text'
-import LTBaseObject from './LTBaseObject'
+import KBaseObject from './KBaseObject'
 import * as proj from 'ol/proj'
 /**
- * @description LTMap.Label 文本标记类
+ * @description KMap.Label 文本标记类
 */
-class Label extends LTBaseObject{
+class Label extends KBaseObject{
 	/**
 	 * Creates an instance of Label.
 	 * @param {*} param
-	 * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+	 * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
 	 * @memberof Label
 	 */
 	constructor(param,mapInstance = null){
@@ -117,21 +117,21 @@ class Label extends LTBaseObject{
 
 	/**
 	 * 获取文本标记坐标
-	 * @param 返回LTMap.LngLat格式的经纬度
+	 * @param 返回KMap.LngLat格式的经纬度
 	*/
 	getPosition() {
 		const vm = this
 		let position = new proj.toLonLat(vm.point.getCoordinates())
-		position = Common.MapLngLat2LTMapLngLat(position)
+		position = Common.MapLngLat2KMapLngLat(position)
 		return position
 	}
 
 	/**
 	 * 设置文本标记坐标
-	 * @param LTMap.LngLat格式的文本标记经纬度坐标，必填
+	 * @param KMap.LngLat格式的文本标记经纬度坐标，必填
 	*/
 	setPosition(lnglat){
-		lnglat = Common.LTMapLngLat2MapLngLat(lnglat)
+		lnglat = Common.KMapLngLat2MapLngLat(lnglat)
 		let position = proj.fromLonLat(lnglat)
 		point.setCoordinates(position)
 	}

@@ -57,7 +57,13 @@ export const constantRoutes = [
       name: 'marker',
       component: () => import('@/views/marker/marker.vue'),
       meta: { title: 'marker', icon: 'table' }
-    }]
+    },{
+      path: 'customLayer',
+      name: 'customLayer',
+      component: () => import('@/views/customLayer/customLayer.vue'),
+      meta: { title: 'customLayer', icon: 'table' }
+    }
+    ]
   },
 
   // 404 page must be placed at the end !!!

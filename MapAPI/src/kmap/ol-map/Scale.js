@@ -1,12 +1,12 @@
 import ScaleLine from 'ol/control/ScaleLine'
-import LTBaseObject from './LTBaseObject'
+import KBaseObject from './KBaseObject'
 /**
- * @description LTMap.Scale 比例尺类
+ * @description KMap.Scale 比例尺类
  */
-class Scale extends LTBaseObject{
+class Scale extends KBaseObject{
   /**
    * @memberof Scale
-   * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+   * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
    */
   constructor(mapInstance = null){
     super(mapInstance)

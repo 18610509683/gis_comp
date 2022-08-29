@@ -13,6 +13,7 @@ import Polygon from './Polygon'
 import Circle from './Circle'
 import Draw from './Draw'
 import MouseTool from './MouseTool'
+import CustomLayer from './CustomLayer'
 export {
   Info,
   Map,
@@ -28,5 +29,6 @@ export {
   LngLat,
   MouseTool,
   LT2DMapConfig,
-  InfoWindow
+  InfoWindow,
+  CustomLayer
 }

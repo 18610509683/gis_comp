@@ -7,16 +7,16 @@ import InfoWindow from './InfoWindow'
 import LngLat from './LngLat'
 import Feature from 'ol/Feature'
 import LineString from 'ol/geom/LineString'
-import LTBaseObject from './LTBaseObject'
+import KBaseObject from './KBaseObject'
 /**
- * @description LTMap.Polyline 线标记类
+ * @description KMap.Polyline 线标记类
 */
-class Polyline extends LTBaseObject{
+class Polyline extends KBaseObject{
 	/**
 	 * @param {*} points
 	 * @param {*} style
 	 * @param {*} extData
-	 * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+	 * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
 	 * @memberof Polyline
 	 */
 	constructor(points,style,extData,mapInstance = null) {
@@ -29,7 +29,7 @@ class Polyline extends LTBaseObject{
 
     let point_Array = new Array()
     for(let i=0; i<points.length; i++) {
-      let point = Common.LTMapLngLat2MapLngLat(points[i])
+      let point = Common.KMapLngLat2MapLngLat(points[i])
       point_Array.push(proj.fromLonLat(point))
     }
     
@@ -115,7 +115,7 @@ class Polyline extends LTBaseObject{
 
 	/**
 	 * 获取线标记端点坐标数组
-	 * @returns LTMap.LngLat格式的经纬度数组集合
+	 * @returns KMap.LngLat格式的经纬度数组集合
 	 */
 	getCoordinates() {
     const vm = this
@@ -124,7 +124,7 @@ class Polyline extends LTBaseObject{
 		for(let i = 0 ; i < coordinates.length ; i ++)
 		{
 			let coordinate =  proj.toLonLat(coordinates[i]) //平面坐标转经纬度坐标
-			coordinate = Common.MapLngLat2LTMapLngLat(coordinate)//Openlayers经纬度坐标转利通地图经纬度坐标
+			coordinate = Common.MapLngLat2KMapLngLat(coordinate)//Openlayers经纬度坐标转利通地图经纬度坐标
 			points.push(coordinate)
 		}
 		return points

@@ -1,5 +1,5 @@
 /**
- * @module LTMap/Info
+ * @module KMap/Info
  * @description api基本信息
  */
 
@@ -9,7 +9,7 @@
  * @type {string}
  * @description 版本
  */
-export const version = "LTMap 1.0 Base On OpenLayers6.14.1"
+export const version = "KMap 1.0 Base On OpenLayers6.14.1"
 
 /**
  * @const

@@ -4,15 +4,15 @@ import Style from 'ol/style/Style'
 import Common from './Common'
 import Icon from 'ol/style/Icon'
 import defaultUrl from '../api-resource/images/AMap/0.png'
-import LTBaseObject from './LTBaseObject'
+import KBaseObject from './KBaseObject'
 /**
- * @description LTMap.DrawFeatureLayer 画图样式控制类
+ * @description KMap.DrawFeatureLayer 画图样式控制类
  */
-class DrawFeatureLayer extends LTBaseObject{
+class DrawFeatureLayer extends KBaseObject{
   /**
    * Creates an instance of DrawFeatureLayer.
    * @param {ol.layer} layer
-   * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+   * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
    * @memberof DrawFeatureLayer
    */
   constructor(layer,mapInstance = null){

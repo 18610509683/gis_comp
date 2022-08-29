@@ -1,19 +1,19 @@
 import MousePosition from 'ol/control/MousePosition'
 import * as coordinate from 'ol/coordinate'
-import LTBaseObject from "./LTBaseObject"
+import KBaseObject from "./KBaseObject"
 /**
- * @description LTMap.MouseTool 鼠标工具类
+ * @description KMap.MouseTool 鼠标工具类
 */
-class MouseTool extends LTBaseObject{
+class MouseTool extends KBaseObject{
   /**
-   * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+   * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
    * @memberof MouseTool
    */
   constructor(mapInstance = null){
     super(mapInstance)
 		const vm = this
     vm.mouseTool = new MousePosition({
-      className:'ol-mouse-position-ltmap',
+      className:'ol-mouse-position-KMap',
       projection: "EPSG:4326", //指定投影格式4326经纬度
       coordinateFormat: coordinate.createStringXY(4) //设置小数点后位数
       //target: '容器id'  //修改显示的容器

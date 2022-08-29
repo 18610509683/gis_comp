@@ -5,15 +5,15 @@ import Stroke from 'ol/style/Stroke'
 import Style from 'ol/style/Style'
 import * as proj from 'ol/proj'
 import * as olExtent from 'ol/extent'
-import LTBaseObject from './LTBaseObject'
+import KBaseObject from './KBaseObject'
 /**
- * @description LTMap.Polygon 面标记类
+ * @description KMap.Polygon 面标记类
 */
-class Polygon extends LTBaseObject{
+class Polygon extends KBaseObject{
   /**
    * @param {*} positions
    * @param {*} style
-   * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+   * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
    * @memberof Polygon
    */
   constructor(positions,style,mapInstance = null){

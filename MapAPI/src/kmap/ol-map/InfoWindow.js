@@ -1,14 +1,14 @@
 import Common from './Common'
 import * as proj from 'ol/proj'
-import LTBaseObject from './LTBaseObject'
+import KBaseObject from './KBaseObject'
 /**
- * @description LTMap.InfoWindow 弹窗类
+ * @description KMap.InfoWindow 弹窗类
  */
-class InfoWindow extends LTBaseObject{
+class InfoWindow extends KBaseObject{
 	/**
 	 * Creates an instance of InfoWindow.
 	 * @param {*} param
-	 * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+	 * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
 	 * @memberof InfoWindow
 	 */
 	constructor(param,mapInstance = null){
@@ -58,7 +58,7 @@ class InfoWindow extends LTBaseObject{
 
 		if(vm.content == undefined || vm.content == ""){return}
 		vm.infoWindowBox.innerHTML = vm.content
-    let vmPosition = proj.fromLonLat(Common.LTMapLngLat2MapLngLat(vm.position))
+    let vmPosition = proj.fromLonLat(Common.KMapLngLat2MapLngLat(vm.position))
 
 		vm.infoWindow.setPosition(vmPosition)
 		var left = -(vm.infoWindowBox.offsetWidth)/2 + vm.offsetX
@@ -81,13 +81,13 @@ class InfoWindow extends LTBaseObject{
 		mapCenter = vm.mapInstance.lngLatToContainer(mapCenter)
     
     //将利通地图像素转换成OL地图像素
-		mapCenter = Common.LTMapPixel2MapPixel(mapCenter)
+		mapCenter = Common.KMapPixel2MapPixel(mapCenter)
 		
     //弹窗坐标初始坐标
     var pixel = vm.mapInstance.lngLatToContainer(vm.position)
 		
     //将利通地图像素转换成OL地图像素
-    pixel = Common.LTMapPixel2MapPixel(pixel)
+    pixel = Common.KMapPixel2MapPixel(pixel)
 		var left = -(vm.infoWindowBox.offsetWidth)/2 + vm.offsetX
 		var top = -(vm.infoWindowBox.offsetHeight) + vm.offsetY
     
@@ -115,7 +115,7 @@ class InfoWindow extends LTBaseObject{
 		}
     
     //将OL地图像素转换成利通地图像素
-		mapCenter = Common.MapPixel2LTMapPixel(mapCenter)
+		mapCenter = Common.MapPixel2KMapPixel(mapCenter)
 		mapCenter = vm.mapInstance.containerToLngLat(mapCenter)
 		vm.mapInstance.panTo(mapCenter)
 	}
@@ -154,13 +154,13 @@ class InfoWindow extends LTBaseObject{
 
 	/**
 	 * 获取弹窗坐标
-	 * @returns LTMap.LngLat格式的弹窗坐标
+	 * @returns KMap.LngLat格式的弹窗坐标
 	*/
 	getPosition() {
     const vm = this
 		let position = vm.infoWindow.getPosition()
 		position = proj.toLonLat(position)
-		return Common.MapLngLat2LTMapLngLat(position)
+		return Common.MapLngLat2KMapLngLat(position)
 	}
 
 	/**
@@ -168,7 +168,7 @@ class InfoWindow extends LTBaseObject{
 	*/
 	setPosition(position) {
     const vm = this
-		vm.infoWindow.setPosition(proj.fromLonLat(Common.LTMapLngLat2MapLngLat(position)))
+		vm.infoWindow.setPosition(proj.fromLonLat(Common.KMapLngLat2MapLngLat(position)))
 	}
 
 	/**

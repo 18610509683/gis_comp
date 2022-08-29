@@ -1,5 +1,5 @@
 /**
- * @description LTMap.LayerTypeEnum 底图类型枚举
+ * @description KMap.LayerTypeEnum 底图类型枚举
 */
 export const LayerTypeEnum = {
   'ARCGISTile':"ARCGISTile",

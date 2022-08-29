@@ -1,4 +1,4 @@
-import * as LTMap from '@/kmap/ol-map/LTMap'
+import * as KMap from '@/kmap/ol-map/KMap'
 export default {
   name: 'marke',
   data() {
@@ -15,12 +15,12 @@ export default {
   },
   methods: {
     createMap() {
-        LTMap.Common.UseOnlineMap = true
-        // LTMap.Common.UseSimpleMap = true
-        LTMap.Common.ShowLevel = [3,22]
-        LTMap.Common.ShowToolbarControl = false
+        KMap.Common.UseOnlineMap = true
+        // KMap.Common.UseSimpleMap = true
+        KMap.Common.ShowLevel = [3,22]
+        KMap.Common.ShowToolbarControl = false
         debugger
-        window.map = new LTMap.Map("map",8,113.27,23.45)
+        window.map = new KMap.Map("map",8,113.27,23.45)
     },
     //添加Marker
     addMarker(){
@@ -30,7 +30,7 @@ export default {
       }
       let lng = 113
       let lat = 23
-      this.marker = new LTMap.Marker(lng,lat,this.imgUrl,-18,-36,36,36)
+      this.marker = new KMap.Marker(lng,lat,this.imgUrl,-18,-36,36,36)
     },
     //移除Marker
     removeMarker(){
@@ -47,7 +47,7 @@ export default {
       }
       let lng = 113
       let lat = 23
-      this.marker = new LTMap.Marker(lng,lat,this.imgUrl,-18,-36,36,36)
+      this.marker = new KMap.Marker(lng,lat,this.imgUrl,-18,-36,36,36)
       let div = document.createElement('div')
       div.innerHTML = '<img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">'
       this.marker.setContentChangeAbleWidth(div,-35)
@@ -60,7 +60,7 @@ export default {
       }
       let lng = 113
       let lat = 23
-      this.marker = new LTMap.Marker(lng,lat,this.imgUrl,-18,-36,36,36)
+      this.marker = new KMap.Marker(lng,lat,this.imgUrl,-18,-36,36,36)
       let div = document.createElement('div')
       div.innerHTML = '<img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">'
       this.marker.setContent(div,-118,-260)
@@ -96,7 +96,7 @@ export default {
         +'<span>弹窗信息窗口</span>'
       +'</div>'
       content.classList.add("infoBox")
-      vm.infoWindow = new LTMap.InfoWindow({
+      vm.infoWindow = new KMap.InfoWindow({
         content:content,
         position:lnglat,
         type:"click",
@@ -126,7 +126,7 @@ export default {
         +'<span>弹窗信息窗口</span>'
       +'</div>'
       content.classList.add("infoBox")
-      vm.infoWindow = new LTMap.InfoWindow({
+      vm.infoWindow = new KMap.InfoWindow({
         content:content,
         position:lnglat,
         type:"mousemove",

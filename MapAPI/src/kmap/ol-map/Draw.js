@@ -3,14 +3,14 @@ import VectorLayer from 'ol/layer/Vector'
 import OLDraw from 'ol/interaction/Draw'
 import * as format from 'ol/format'
 import DrawFeatureLayer from './DrawFeatureLayer'
-import LTBaseObject from './LTBaseObject'
+import KBaseObject from './KBaseObject'
 /**
- * @description LTMap.Draw 画图工具类
+ * @description KMap.Draw 画图工具类
  */
-class Draw extends LTBaseObject{
+class Draw extends KBaseObject{
   /**
    * @param {String} geoType 画图类型 Point,LineString,Polygon,Circle
-   * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+   * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
    * @memberof Draw
    */
   constructor(geoType,mapInstance = null){
