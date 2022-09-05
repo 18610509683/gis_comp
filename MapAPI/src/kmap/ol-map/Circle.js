@@ -6,6 +6,7 @@ import * as olExtent from 'ol/extent'
 import * as proj from 'ol/proj'
 import OLCircle from 'ol/geom/Circle'
 import KBaseObject from './KBaseObject'
+import Common from './Common'
 
 /**
  * @description KMap.Circle 圆标记

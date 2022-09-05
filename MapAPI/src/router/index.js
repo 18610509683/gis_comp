@@ -62,6 +62,31 @@ export const constantRoutes = [
       name: 'customLayer',
       component: () => import('@/views/customLayer/customLayer.vue'),
       meta: { title: 'customLayer', icon: 'table' }
+    },{
+      path: 'control',
+      name: 'control',
+      component: () => import('@/views/control/control.vue'),
+      meta: { title: 'control', icon: 'table' }
+    },{
+      path: 'draw',
+      name: 'draw',
+      component: () => import('@/views/draw/draw.vue'),
+      meta: { title: 'draw', icon: 'table' }
+    },{
+      path: 'multiMap',
+      name: 'multiMap',
+      component: () => import('@/views/multiMap/multiMap.vue'),
+      meta: { title: 'multiMap', icon: 'table' }
+    },{
+      path: 'polyline',
+      name: 'polyline',
+      component: () => import('@/views/polyline/polyline.vue'),
+      meta: { title: 'polyline', icon: 'table' }
+    },{
+      path: 'polygon',
+      name: 'polygon',
+      component: () => import('@/views/polygon/polygon.vue'),
+      meta: { title: 'polygon', icon: 'table' }
     }
     ]
   },
