@@ -1,0 +1,64 @@
+.mapParent {
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
+  // overflow: hidden;
+}
+html{
+  overflow: hidden;
+  margin:0;
+  padding:0;
+}
+#map{
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
+  cursor: pointer !important;;
+}
+.test-btn{
+  position:absolute;
+  z-index: 1000;
+  bottom:16px;
+  right: 16px;
+}
+.btn-container{
+  position: absolute;
+  bottom: 0px;
+  padding-left:100px;
+  z-index: 1000;
+  padding-bottom: 16px;
+  float: right;
+}
+.text {
+  font-size: 14px;
+}
+
+.item {
+  margin-bottom: 18px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both
+}
+
+.box-card {
+  width: 480px;
+}
+.infoWindow{
+  position:absolute;
+  width:400px;
+  height:600px;
+  z-index: 999;
+}
+.infoBox{
+  width:300px;
+  height:200px;
+  background-color: rgb(151, 160, 112);
+}

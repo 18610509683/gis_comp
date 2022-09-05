@@ -3,7 +3,7 @@ export default {
   name: 'marke',
   data() {
     return {
-      imgUrl:require('../../kmap/api-resource/images/AMap/0.png'),
+      imgUrl:require('@/kmap/api-resource/images/AMap/0.png'),
       marker:null,
       infoWindowShow:false
     }
@@ -19,7 +19,6 @@ export default {
         // KMap.Common.UseSimpleMap = true
         KMap.Common.ShowLevel = [3,22]
         KMap.Common.ShowToolbarControl = false
-        debugger
         window.map = new KMap.Map("map",8,113.27,23.45)
     },
     //添加Marker
@@ -148,7 +147,7 @@ export default {
       }
       vm.addMarker()
       vm.marker.setText({
-        text:"高进度地图引擎",
+        text:"高精度地图引擎",
         fill:"red",
         backgroundColor:"silver",
         backgroundStroke:"thistle",

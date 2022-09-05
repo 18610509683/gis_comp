@@ -1,0 +1,59 @@
+.mapParent {
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
+  // overflow: hidden;
+}
+html{
+  overflow: hidden;
+  margin:0;
+  padding:0;
+}
+#map{
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
+  cursor: pointer !important;;
+}
+.test-btn{
+  position:absolute;
+  z-index: 1000;
+  bottom:16px;
+  right: 16px;
+}
+.btn-container{
+  position:absolute;
+  bottom:0px;
+  padding-left:100px;
+  z-index:1000;
+  padding-bottom:16px;
+  float:right;
+}
+/*鹰眼控件展开时的控件外边框*/
+.myOverview:not(.ol-collapsed){
+  border:1px solid black;
+}
+/*鹰眼控件地图容器边框样式*/
+.myOverview .ol-overviewmap-map{
+  border:none;
+  width:200px;
+  height: 100px;
+}
+/*鹰眼控件中显示当前窗口区域的边框样式*/
+.myOverview .ol-overviewmap-box{
+  border:2px solid red;
+}
+ /*鹰眼控件展开时其控件按钮图标的样式*/
+.myOverview:not(.ol-collapsed) button{
+  bottom:auto;
+  left:auto;
+  right:1px;
+  top:1px;
+}
+.ol-overviewmap{
+  left:auto;
+  right:0.5em;
+  bottom: 0.5em;
+}

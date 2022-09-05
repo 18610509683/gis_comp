@@ -1,0 +1,33 @@
+.mapParent {
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
+  // overflow: hidden;
+}
+html{
+  overflow: hidden;
+  margin:0;
+  padding:0;
+}
+#map{
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
+  cursor: pointer !important;;
+}
+.test-btn{
+  position:absolute;
+  z-index: 1000;
+  bottom:16px;
+  right: 16px;
+}
+.btn-container{
+  position:absolute;
+  bottom:0px;
+  padding-left:100px;
+  z-index:1000;
+  padding-bottom:16px;
+  float:right;
+}

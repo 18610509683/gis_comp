@@ -3,7 +3,7 @@ export default {
   name: 'marke',
   data() {
     return {
-      imgUrl:require('../../kmap/api-resource/images/AMap/0.png'),
+      imgUrl:require('@/kmap/api-resource/images/AMap/0.png'),
       marker:null,
       infoWindowShow:false
     }
