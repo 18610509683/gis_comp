@@ -14,6 +14,7 @@ import Circle from './Circle'
 import Draw from './Draw'
 import MouseTool from './MouseTool'
 import CustomLayer from './CustomLayer'
+import BaiDuLayer from './BaiDuLayer'
 export {
   Info,
   Map,
@@ -30,5 +31,6 @@ export {
   MouseTool,
   LT2DMapConfig,
   InfoWindow,
-  CustomLayer
+  CustomLayer,
+  BaiDuLayer
 }

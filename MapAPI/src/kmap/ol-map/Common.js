@@ -28,7 +28,11 @@ class Common{
 	 *@description 在线地图路径
 	*/
 	static OnlineMapDataUrl = LT2DMapConfig.OnlineMapDataUrl
-	
+
+		/**
+	 *@description 百度地图路径
+	*/
+	static BaiDuMapDataUrl = LT2DMapConfig.BaiDuMapDataUrl
 	/**
 	 *@description 地图缩放范围，包含最小、最大缩放级别的数组，默认为3-18级
 	*/
@@ -48,7 +52,11 @@ class Common{
 	 *@description 是否使用在线地图，默认为不使用
 	*/
 	static UseOnlineMap = LT2DMapConfig.UseOnlineMap
-	
+
+	/**
+	 *@description 是否使用在线地图，默认为不使用
+	*/
+	static UseBaiDuMap = LT2DMapConfig.UseBaiDuMap
 	/**
 	 *@description 是否显示地图操作工具条，默认为显示
 	*/

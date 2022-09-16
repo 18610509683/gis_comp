@@ -113,12 +113,17 @@ class Map {
 			//在线地图
 			mapType = Enum.LayerTypeEnum.OnLineTile
 			mapUrl =  Common.OnlineMapDataUrl
+		}else if(Common.UseBaiDuMap == true){
+			//百度切片地图
+			mapType = Enum.LayerTypeEnum.BaiDuTile
+			mapUrl =  Common.BaiDuMapDataUrl
 		}
 		else {
 			//高德地图
 			mapType = Enum.LayerTypeEnum.GaoDeTile
 			mapUrl =  Common.MapDataUrl
 		}
+		debugger
 		let object = new SimpleLayer(mapUrl,mapType)
     return object.layer
   }

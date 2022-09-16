@@ -1,6 +1,7 @@
-import Tile from 'ol/layer/WebGLTile'
+import Tile from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import * as Enum from './Enum'
+import BaiDuLayer from './BaiDuLayer'
 /**
  * @description KMap.SimpleLayer 离线切片图层类
  */
@@ -22,9 +23,12 @@ class SimpleLayer {
     }else if(Enum.LayerTypeEnum.OnLineTile == tileType){
       source = this.onlineTile(simpleMapUrl)
       layer.setSource(source)
+    }else if(Enum.LayerTypeEnum.BaiDuTile == tileType){
+      source = this.BaiDuTile(simpleMapUrl)
+      layer.setSource(source)
     }
     this.source = source
-	  this.layer = layer
+    this.layer = layer
   }
 
   /**
@@ -83,6 +87,17 @@ class SimpleLayer {
     let source = new XYZ({
       url : onlineUrl
     })
+    return source
+  }
+
+  /**
+   * @description 百度底图切片
+   * @param {String}  mapUrl 离线切片地址
+   * @return { ol.source} source ol.source 
+   * @memberof SimpleLayer
+  */
+  BaiDuTile(onlineUrl){
+    let source = BaiDuLayer.initSource(onlineUrl)
     return source
   }
 }
