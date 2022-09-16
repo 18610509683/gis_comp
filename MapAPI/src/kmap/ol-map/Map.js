@@ -123,7 +123,6 @@ class Map {
 			mapType = Enum.LayerTypeEnum.GaoDeTile
 			mapUrl =  Common.MapDataUrl
 		}
-		debugger
 		let object = new SimpleLayer(mapUrl,mapType)
     return object.layer
   }
