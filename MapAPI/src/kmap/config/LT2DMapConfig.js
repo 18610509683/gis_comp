@@ -12,8 +12,8 @@ const LT2DMapConfig = {
   //在线底图地址
   "OnlineMapDataUrl":"http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}",
   //百度底图
-  "BaiDuMapDataUrl":"http://maponline0.bdimg.com/tile/?qt=vtile&x={x}&y={y}&z={z}&styles=pl&scaler=1&udt=20210506&from=jsapi3_0",
-  // "BaiDuMapDataUrl":"http://127.0.0.1:9080/baidu/{z}/{x}/{y}.jpg",   --自己换地址
+  // "BaiDuMapDataUrl":"http://maponline0.bdimg.com/tile/?qt=vtile&x={x}&y={y}&z={z}&styles=pl&scaler=1&udt=20210506&from=jsapi3_0",
+  "BaiDuMapDataUrl":"http://47.107.126.107:9000/map/hefei/{z}/{x}/{y}.png", //  --自己换地址
   "ShowLevel":[3,18],
   //是否使用百度底图
   "UseBaiDuMap":false,
