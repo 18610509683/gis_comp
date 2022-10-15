@@ -19,12 +19,15 @@ class Polyline extends KBaseObject{
 	 * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
 	 * @memberof Polyline
 	 */
-	constructor(points,style,extData,mapInstance = null) {
+	constructor(points,style,extData,options,mapInstance = null) {
     super(mapInstance)
 		//地图map对象
     const vm = this
     //地图线标记图层
     vm.source = vm.mapInstance.polyLineLayer.getSource()
+	if(options && options.source){
+		vm.source = source;
+	}
     extData = (extData)? extData : null
 
     let point_Array = new Array()

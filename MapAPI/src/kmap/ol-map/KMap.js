@@ -16,6 +16,7 @@ import MouseTool from './MouseTool'
 import CustomLayer from './CustomLayer'
 import BaiDuLayer from './BaiDuLayer'
 import WMTSLayer from './WMTSLayer'
+import VectorLayer from './VectorLayer'
 import XYZLayer from './XYZLayer'
 import StaticImageLayer from './StaticImageLayer'
 export {
@@ -38,5 +39,6 @@ export {
   BaiDuLayer,
   WMTSLayer,
   XYZLayer,
-  StaticImageLayer
+  StaticImageLayer,
+  VectorLayer
 }

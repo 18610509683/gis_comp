@@ -27,6 +27,7 @@ class Marker extends KBaseObject{
    * @constructor
    */
   constructor(lng,lat,url,offsetX,offsetY,width,height,param,mapInstance = null){
+		debugger;
 		super(mapInstance)
 		const vm = this
     	//对于必填的参数进行验证

@@ -16,11 +16,14 @@ class Polygon extends KBaseObject{
    * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
    * @memberof Polygon
    */
-  constructor(positions,style,mapInstance = null){
+  constructor(positions,style,options,mapInstance = null){
     super(mapInstance)
 		const vm = this
     const layer = vm.mapInstance.polygonLayer
     vm.source = layer.getSource()
+    if(options && options.source){
+      vm.source = source;
+    }
     vm.style = vm.initStyle(style)
     vm.polygon = vm.initFeature(positions,vm.style)
     vm.source.addFeature(vm.polygon)

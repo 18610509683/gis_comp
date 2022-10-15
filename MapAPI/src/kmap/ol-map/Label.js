@@ -17,7 +17,7 @@ class Label extends KBaseObject{
 	 * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
 	 * @memberof Label
 	 */
-	constructor(param,mapInstance = null){
+	constructor(param,options,mapInstance = null){
 		super(mapInstance)
 		const vm = this
     let lng = (param.lng != undefined)? Number(param.lng) : vm.mapInstance.getCenter()[0]
@@ -62,7 +62,11 @@ class Label extends KBaseObject{
     vm.text = vm.style.getText() //文本标记内容
     vm.point = vm.label.getGeometry() //文本标记对象
     vm.source = vm.mapInstance.labelLayer.getSource() //地图文本标记图层
-    //文本标记添加到地图
+	
+	if(options && options.source){
+		vm.source = source;
+	}
+	//文本标记添加到地图
     vm.source.addFeature(vm.label)
   }
 

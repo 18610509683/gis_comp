@@ -48,6 +48,10 @@ class Common{
 	*/
 	static ShowToolbarControl = LT2DMapConfig.ShowToolbarControl
 	
+	static MarkerLayerZIndex =  LT2DMapConfig.MarkerLayerZIndex
+	static LabelLayerZIndex = LT2DMapConfig.LabelLayerZIndex
+	static PolylineLayerZIndex = LT2DMapConfig.PolylineLayerZIndex
+	static PolygonLayerZIndex =  LT2DMapConfig.PolygonLayerZIndex
 	/**
 	 *@description 底图Zoom限制
 	*/

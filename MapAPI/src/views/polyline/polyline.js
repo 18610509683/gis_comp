@@ -8,6 +8,9 @@ export default {
   },
   mounted() {
     this.createMap()
+    //使用自定义图层---并不是默认的图层
+    let layer = new KMap.VectorLayer('line2',KMap.Common.PolylineLayerZIndex,{minxZoom:4,maxZoom:16})
+    window.source1 = layer.source()
   },
   created() {
   },
@@ -36,7 +39,7 @@ export default {
         let lnglats = coordinates[i].split(',')
           lineArray.push(new KMap.LngLat(lnglats[1], lnglats[0]))
       }
-      let polyline = new KMap.Polyline(lineArray,style)
+      let polyline = new KMap.Polyline(lineArray,style,null,{source:window.source1})
       return polyline
     },
     removePolyLine(){

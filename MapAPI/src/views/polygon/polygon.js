@@ -7,6 +7,9 @@ export default {
   },
   mounted() {
     this.createMap()
+    //使用自定义图层---并不是默认的图层
+    let layer = new KMap.VectorLayer('polygon2',KMap.Common.PolylineLayerZIndex,{minxZoom:4,maxZoom:16})
+    window.source1 = layer.source()
   },
   created() {
   },
@@ -26,7 +29,7 @@ export default {
         new KMap.LngLat(113.3,23.6)
       ]
       var style = {fillColor:"rgba(255,0,0,0.5)",strokeColor:"rgba(0,0,255,1)",storkeWidth:3}
-      vm.polygon = new KMap.Polygon(coordinate,style)
+      vm.polygon = new KMap.Polygon(coordinate,style,{source:window.source1})
       // vm.polygon.zoomToExtent(1000)
     },
     removePolygon(){

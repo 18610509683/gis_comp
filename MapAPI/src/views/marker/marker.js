@@ -10,6 +10,9 @@ export default {
   },
   mounted() {
     this.createMap()
+    //使用自定义图层---并不是默认的图层
+    let layer = new KMap.VectorLayer('marker2',KMap.Common.MarkerLayerZIndex,{minxZoom:4,maxZoom:16})
+    window.source1 = layer.source()
   },
   created() {
   },
@@ -27,7 +30,7 @@ export default {
       }
       let lng = 113
       let lat = 23
-      this.marker = new KMap.Marker(lng,lat,this.imgUrl,-18,-36,36,36)
+      this.marker = new KMap.Marker(lng,lat,this.imgUrl,-18,-36,36,36,{source:window.source1})
     },
     //移除Marker
     removeMarker(){

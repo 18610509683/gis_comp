@@ -68,32 +68,36 @@ export const constantRoutes = [
       name: 'marker',
       component: () => import('@/views/marker/marker.vue'),
       meta: { title: '综合例子-交互', icon: 'table' }
-    },{
-      path: 'customLayer',
-      name: 'customLayer',
-      component: () => import('@/views/customLayer/customLayer.vue'),
-      meta: { title: 'customLayer', icon: 'table' }
-    },{
-      path: 'control',
-      name: 'control',
-      component: () => import('@/views/control/control.vue'),
-      meta: { title: 'control', icon: 'table' }
-    },{
-      path: 'multiMap',
-      name: 'multiMap',
-      component: () => import('@/views/multiMap/multiMap.vue'),
-      meta: { title: 'multiMap', icon: 'table' }
-    },{
+    }
+    // ,{
+    //   path: 'customLayer',
+    //   name: 'customLayer',
+    //   component: () => import('@/views/customLayer/customLayer.vue'),
+    //   meta: { title: 'customLayer', icon: 'table' }
+    // }
+    ,{
       path: 'polyline',
       name: 'polyline',
       component: () => import('@/views/polyline/polyline.vue'),
-      meta: { title: 'polyline', icon: 'table' }
+      meta: { title: '线交互', icon: 'table' }
     },{
       path: 'polygon',
       name: 'polygon',
       component: () => import('@/views/polygon/polygon.vue'),
-      meta: { title: 'polygon', icon: 'table' }
-    }
+      meta: { title: '面交互', icon: 'table' }
+    },
+    {
+      path: 'control',
+      name: 'control',
+      component: () => import('@/views/control/control.vue'),
+      meta: { title: '地图控件', icon: 'table' }
+    },
+    {
+      path: 'multiMap',
+      name: 'multiMap',
+      component: () => import('@/views/multiMap/multiMap.vue'),
+      meta: { title: '多地图', icon: 'table' }
+    },
     ]
   },
 
