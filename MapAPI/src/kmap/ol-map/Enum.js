@@ -4,6 +4,6 @@
 export const LayerTypeEnum = {
   'ARCGISTile':"ARCGISTile",
   'GaoDeTile':"GaoDeTile",
-  "OnLineTile":"OnLineTile",
+  "WGS84Tile":"WGS84Tile",
   "BaiDuTile":"BaiDuTile"
 }

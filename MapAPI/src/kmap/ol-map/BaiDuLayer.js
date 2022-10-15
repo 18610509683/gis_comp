@@ -4,6 +4,7 @@ import TileImage from 'ol/source/TileImage'
 import { addProjection,addCoordinateTransforms,Projection } from 'ol/proj'
 import TileGrid from 'ol/tilegrid/TileGrid'
 import * as BD09 from '../config/bd09'
+import Common from './Common'
 /**
  * @description KMap.CustomLayer 自定义离线切片图层类
  */
@@ -12,14 +13,23 @@ class BaiDuLayer extends KBaseObject{
    * @description 离线切片图层类
    * @param {string} layerUrl 切片url地址
   */
-  constructor(layerUrl,mapInstance = null){
+  constructor(layerUrl,options,mapInstance = null){
     super(mapInstance)
     const vm = this
-    let layer = new Tile()
-    let source = vm.initSource(layerUrl)
-    layer.setSource(source)
-    vm.layer = layer
-    vm.map.addLayer(vm.layer)
+    var minZoom = Common.BaseLayerZoom[0];
+		var maxZoom = Common.BaseLayerZoom[1];
+		
+		if(options && options.minZoom != undefined){
+			minZoom = options.minZoom;
+		}
+		if(options && options.maxZoom != undefined){
+			maxZoom = options.maxZoom;
+		}
+    let layer = new Tile({minZoom:minZoom,maxZoom:maxZoom});
+    let source = BaiDuLayer.initSource(layerUrl);
+    layer.setSource(source);
+    vm.layer = layer;
+    vm.map.addLayer(vm.layer);
   }
   hide(){
     const vm = this

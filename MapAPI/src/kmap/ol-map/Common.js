@@ -10,57 +10,47 @@ import Check from './Check'
  */
 class Common{
 	/**
-	 *@description 地图简图路径
+	 *@description 高德在线底图
 	*/
-	static SimpleMapDataUrl = LT2DMapConfig.SimpleMapDataUrl
+	static GaoDeOnlineUrl = LT2DMapConfig.GaoDeOnlineUrl
 
 	/**
-	 *@description 高德离线地图路径
+	 *@description 百度在线底图
 	*/
-	static MapDataUrl = LT2DMapConfig.MapDataUrl
+	static BaiDuOnlineUrl = LT2DMapConfig.BaiDuOnlineUrl
 
 	/**
-	 *@description 路况简图路径
+	 *@description WGS84在线底图
 	*/
-	static TrafficMapDataUrl = LT2DMapConfig.TrafficMapDataUrl
-	
+	static WGS84OnlineUrl = LT2DMapConfig.WGS84OnlineUrl
 	/**
-	 *@description 在线地图路径
-	*/
-	static OnlineMapDataUrl = LT2DMapConfig.OnlineMapDataUrl
-
-		/**
-	 *@description 百度地图路径
-	*/
-	static BaiDuMapDataUrl = LT2DMapConfig.BaiDuMapDataUrl
-	/**
-	 *@description 地图缩放范围，包含最小、最大缩放级别的数组，默认为3-18级
+	 *@description 地图缩放范围，包含最小、最大缩放级别的数组，默认为1-25级
 	*/
 	static ShowLevel =  LT2DMapConfig.ShowLevel
 	
 	/**
 	 *@description 是否使用简图，默认为不使用
 	*/
-	static UseSimpleMap = LT2DMapConfig.UseSimpleMap
+	static UseWGS84OnlineLayer = LT2DMapConfig.UseWGS84OnlineLayer
 	
 	/**
 	 *@description 是否使用路况简图，默认为不使用
 	*/
-	static UseTrafficMap =  LT2DMapConfig.UseTrafficMap
+	static UseBaiDuOnlineLayer =  LT2DMapConfig.UseBaiDuOnlineLayer
 	
 	/**
 	 *@description 是否使用在线地图，默认为不使用
 	*/
-	static UseOnlineMap = LT2DMapConfig.UseOnlineMap
-
-	/**
-	 *@description 是否使用在线地图，默认为不使用
-	*/
-	static UseBaiDuMap = LT2DMapConfig.UseBaiDuMap
+	static UseGaoDeOnlineLayer = LT2DMapConfig.UseGaoDeOnlineLayer
 	/**
 	 *@description 是否显示地图操作工具条，默认为显示
 	*/
 	static ShowToolbarControl = LT2DMapConfig.ShowToolbarControl
+	
+	/**
+	 *@description 底图Zoom限制
+	*/
+	static BaseLayerZoom = [1,16]
 	/**
 	 * @description 利通地图像素转OpenLayers地图像素
 	 * @param {KMap.Pixel} pixel KMap.Pixel格式的像素，必填

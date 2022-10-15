@@ -14,8 +14,6 @@ export default {
   },
   methods: {
     createMap() {
-      // KMap.Common.UseSimpleMap = true
-      KMap.Common.UseOnlineMap = true
       KMap.Common.ShowLevel = [3,22]
       KMap.Common.ShowToolbarControl = true
       window.map = new KMap.Map("map",8,113.27,23.45)

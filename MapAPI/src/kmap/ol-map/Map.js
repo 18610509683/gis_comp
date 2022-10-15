@@ -99,29 +99,20 @@ class Map {
 	initBaseLayer(){
 		let mapType = null
 		let mapUrl  = null
-		if(Common.UseSimpleMap == true) {
+		if(Common.UseBaiDuOnlineLayer == true) {
 			//自定义地图
-			mapType = Enum.LayerTypeEnum.ARCGISTile
-			mapUrl =  Common.SimpleMapDataUrl
-		}
-		else if(Common.UseTrafficMap == true) {
-			//交通地图
-			mapType = Enum.LayerTypeEnum.ARCGISTile
-			mapUrl =  Common.TrafficMapDataUrl 
-		}
-		else if(Common.UseOnlineMap == true){
-			//在线地图
-			mapType = Enum.LayerTypeEnum.OnLineTile
-			mapUrl =  Common.OnlineMapDataUrl
-		}else if(Common.UseBaiDuMap == true){
-			//百度切片地图
 			mapType = Enum.LayerTypeEnum.BaiDuTile
-			mapUrl =  Common.BaiDuMapDataUrl
+			mapUrl =  Common.BaiDuOnlineUrl
+		}
+		else if(Common.UseWGS84OnlineLayer == true) {
+			//交通地图
+			mapType = Enum.LayerTypeEnum.WGS84Tile
+			mapUrl =  Common.WGS84OnlineUrl 
 		}
 		else {
 			//高德地图
 			mapType = Enum.LayerTypeEnum.GaoDeTile
-			mapUrl =  Common.MapDataUrl
+			mapUrl =  Common.GaoDeOnlineUrl
 		}
 		let object = new SimpleLayer(mapUrl,mapType)
     return object.layer
@@ -930,10 +921,13 @@ class Map {
 	 */
 	destroy() {
 		//清空地图对象
-		this.map.destroy()
+		// this.map.destroy()
 		//清空地图容器
 		let target =this.map.getTargetElement()
 		target.innerHTML = ""
+		Common.UseBaiDuOnlineLayer = false;
+		Common.UseGaoDeOnlineLayer = false;
+		Common.UseWGS84OnlineLayer = false;
 	}
 	
 	/**

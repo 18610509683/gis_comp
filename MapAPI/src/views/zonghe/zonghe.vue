@@ -1,14 +1,11 @@
 <template>
   <div class="mapParent">
     <div id="map">
-      <div class="btn-container">
-        <el-button size="small" type="primary" round @click="addGaoDeOnline">高德在线</el-button>
-        <el-button size="small" type="primary" round @click="addGaoDeOffline">高德离线</el-button>
-        <el-button size="small" type="primary" round @click="addBaiduOnline">百度在线</el-button>
-        <el-button size="small" type="primary" round @click="addBaiduOffline">百度离线</el-button>
-        <el-button size="small" type="primary" round @click="addWGS84Online">WGS84在线</el-button>
-        <el-button size="small" type="primary" round @click="addWGS84Offline">WGS84离线</el-button>
-      </div>
+    </div>
+    <div class="btn-container">
+      <el-button size="small" type="primary" round @click="addGaoDeOffline">高德在线</el-button>
+      <el-button size="small" type="primary" round @click="addBaiduOffline">百度离线</el-button>
+      <el-button size="small" type="primary" round @click="addWGS84Offline">WGS84 wmts 离线</el-button>
     </div>
   </div>
 </template>

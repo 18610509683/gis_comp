@@ -15,6 +15,8 @@ import Draw from './Draw'
 import MouseTool from './MouseTool'
 import CustomLayer from './CustomLayer'
 import BaiDuLayer from './BaiDuLayer'
+import WMTSLayer from './WMTSLayer'
+import XYZLayer from './XYZLayer'
 export {
   Info,
   Map,
@@ -32,5 +34,7 @@ export {
   LT2DMapConfig,
   InfoWindow,
   CustomLayer,
-  BaiDuLayer
+  BaiDuLayer,
+  WMTSLayer,
+  XYZLayer
 }
