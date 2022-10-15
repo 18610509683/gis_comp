@@ -57,7 +57,7 @@ export const constantRoutes = [
       path: 'zonghe',
       name: 'zonghe',
       component: () => import('@/views/zonghe/zonghe.vue'),
-      meta: { title: '综合例子', icon: 'table' }
+      meta: { title: '综合例子-多数据源', icon: 'table' }
     },{
       path: 'draw',
       name: 'draw',
@@ -67,7 +67,7 @@ export const constantRoutes = [
       path: 'marker',
       name: 'marker',
       component: () => import('@/views/marker/marker.vue'),
-      meta: { title: '综合例子-交互', icon: 'table' }
+      meta: { title: '综合例子-点交互', icon: 'table' }
     }
     // ,{
     //   path: 'customLayer',
@@ -79,12 +79,12 @@ export const constantRoutes = [
       path: 'polyline',
       name: 'polyline',
       component: () => import('@/views/polyline/polyline.vue'),
-      meta: { title: '线交互', icon: 'table' }
+      meta: { title: '综合例子-线交互', icon: 'table' }
     },{
       path: 'polygon',
       name: 'polygon',
       component: () => import('@/views/polygon/polygon.vue'),
-      meta: { title: '面交互', icon: 'table' }
+      meta: { title: '综合例子-面交互', icon: 'table' }
     },
     {
       path: 'control',
