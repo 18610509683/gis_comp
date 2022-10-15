@@ -164,6 +164,7 @@ class Draw extends KBaseObject{
 
   drawEnd(callback){
     const vm = this;
+    debugger
     vm.draw.on('drawend',function(e){
       var oljson = new format.GeoJSON()
       var feature = e.feature
@@ -192,6 +193,7 @@ class Draw extends KBaseObject{
   }
   destory(){
     const vm = this
+    vm.source.clear()
     vm.map.removeInteraction(vm.draw)
     vm.draw = null
   }

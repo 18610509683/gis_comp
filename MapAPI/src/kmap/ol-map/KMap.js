@@ -17,6 +17,7 @@ import CustomLayer from './CustomLayer'
 import BaiDuLayer from './BaiDuLayer'
 import WMTSLayer from './WMTSLayer'
 import XYZLayer from './XYZLayer'
+import StaticImageLayer from './StaticImageLayer'
 export {
   Info,
   Map,
@@ -36,5 +37,6 @@ export {
   CustomLayer,
   BaiDuLayer,
   WMTSLayer,
-  XYZLayer
+  XYZLayer,
+  StaticImageLayer
 }

@@ -5,7 +5,9 @@ export default {
     return {
       imgUrl:require('@/kmap/api-resource/images/AMap/0.png'),
       marker:null,
-      infoWindowShow:false
+      infoWindowShow:false,
+      text:"开启拾取模式",
+      isShiQu:false,
     }
   },
   mounted() {
@@ -60,10 +62,37 @@ export default {
       KMap.Common.BaseLayerZoom = [1,16];
       KMap.Common.ShowToolbarControl = false;
       window.map = new KMap.Map("map",8,113.27,23.45);
-      let url = "http://128.23.20.168:8080/geoserver/gwc/service/wmts";
+      let url = "http://192.168.16.120:8080/geoserver/gwc/service/wmts";
       var layerName = 'test:reservoir';
       this.layer = new KMap.WMTSLayer(url,{layerName:layerName,minZoom:16,maxZoom:25})
       window.map.setZoomAndCenter(18,new KMap.LngLat(117.81064408342074, 32.19214643804327));
+      
+    },
+    //获取中心点击层级
+    getCenterAndZoom(){
+      if(window.map){
+        var center = window.map.getCenter();
+        var zoom = window.map.getZoom();
+        debugger;
+        alert("中心点坐标为经度为:"+center.getLng()+",纬度为:"+center.getLat()+";层级Zoom为"+zoom)
+      }
+    },
+    //开启拾取坐标模式
+    GetCoordinates(){
+      const vm = this;
+      vm.isShiQu = !vm.isShiQu;
+      if(vm.isShiQu){
+        vm.text = "关闭拾取模式"
+      }else{
+        vm.text = "开启拾取模式"
+      }
+     
+      window.map.on('click',function(e){
+        if(vm.isShiQu){
+          let coordinate = KMap.Common.toWGS84LngLat(window.map,e.coordinate);
+          alert("点击坐标为经度为:"+coordinate[0]+",纬度为:"+coordinate[1])
+        }
+      })
     }
   }
 }

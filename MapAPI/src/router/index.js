@@ -67,7 +67,7 @@ export const constantRoutes = [
       path: 'marker',
       name: 'marker',
       component: () => import('@/views/marker/marker.vue'),
-      meta: { title: 'marker', icon: 'table' }
+      meta: { title: '综合例子-交互', icon: 'table' }
     },{
       path: 'customLayer',
       name: 'customLayer',

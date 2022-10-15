@@ -5,6 +5,7 @@ import LngLat from './LngLat'
 import Bounds from './Bounds'
 import { v4 as uuidv4 } from 'uuid'
 import Check from './Check'
+import * as olProj from 'ol/proj';
 /**
  * @description KMap.Common类 通用静态方法
  */
@@ -155,7 +156,10 @@ class Common{
 			Common.SetDivCenter(obj)
 		})
 	}
-
+	static toWGS84LngLat(map,coordinate){
+		map.getCoor
+		return olProj.transform(coordinate,map.getProjection(),"EPSG:4326")
+	}
 	/**
 	 * @description Div居中显示，供内部函数使用
 	 * @param {Object} obj div对象 ($('.className')或$('#idName'))

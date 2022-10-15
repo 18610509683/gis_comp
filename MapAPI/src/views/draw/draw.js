@@ -35,22 +35,22 @@ export default {
       if(vm.drawTool){
         vm.drawTool.destory()
         vm.drawTool = null
-      }else{
-        vm.drawTool = new KMap.Draw(geoType)
-        debugger;
-        vm.drawTool.drawEnd(function(data){
-          console.log(data)
-          if(data.type == 'Point'){
-            vm.addMarker(data.coordinates)
-          }
-          if(data.type == 'LineString'){
-            vm.addPolyLine(data.coordinates)
-          }
-          if(data.type == 'Polygon'){
-            vm.addPolygon(data.coordinates)
-          }
-        })
       }
+      vm.drawTool = new KMap.Draw(geoType)
+      debugger;
+      vm.drawTool.drawEnd(function(data){
+        console.log(data)
+        if(data.type == 'Point'){
+          vm.addMarker(data.coordinates)
+        }
+        if(data.type == 'LineString'){
+          vm.addPolyLine(data.coordinates)
+        }
+        if(data.type == 'Polygon'){
+          vm.addPolygon(data.coordinates)
+        }
+      })
+      
     },
     clear(){
       const vm = this
@@ -81,7 +81,6 @@ export default {
       let lng = coordinate[0];
       let lat = coordinate[1];
       let marker = new KMap.Marker(lng,lat,this.imgUrl,-12,-12,24,24)
-      debugger;
     },
     //添加线
     addPolyLine(coordinates){
@@ -92,7 +91,6 @@ export default {
           lineArray.push(new KMap.LngLat(lnglats[0], lnglats[1]))
       }
       let polyline = new KMap.Polyline(lineArray,style)
-      debugger;
       return polyline
     },
     //添加面
@@ -104,7 +102,6 @@ export default {
       })
       var style = {fillColor:"rgba(255,0,0,0.5)",strokeColor:"rgba(0,0,255,1)",storkeWidth:3}
       vm.polygon = new KMap.Polygon(newcoordinate,style)
-      debugger;
     },
     //清空 --用户的点线面
     clearUserAdd(){

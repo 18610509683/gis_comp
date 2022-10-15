@@ -911,6 +911,7 @@ class Map {
 		vm.markerLayer.getSource().clear()
 		vm.labelLayer.getSource().clear()
 		vm.polyLineLayer.getSource().clear()
+		vm.polygonLayer.getSource().clear()
 		//清空地图弹窗
 		vm.clearInfoWindow()
 	}
