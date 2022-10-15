@@ -27,7 +27,6 @@ class XYZLayer extends LTBaseObject{
 	 initXYZLayer(url,options){
 		var minZoom = Common.BaseLayerZoom[0];
 		var maxZoom = Common.BaseLayerZoom[1];
-		debugger;
 		if(options && options.minZoom != undefined){
 			minZoom = options.minZoom
 		}

@@ -59,6 +59,11 @@ export const constantRoutes = [
       component: () => import('@/views/zonghe/zonghe.vue'),
       meta: { title: '综合例子', icon: 'table' }
     },{
+      path: 'draw',
+      name: 'draw',
+      component: () => import('@/views/draw/draw.vue'),
+      meta: { title: '综合例子-画图', icon: 'table' }
+    },{
       path: 'marker',
       name: 'marker',
       component: () => import('@/views/marker/marker.vue'),
@@ -73,11 +78,6 @@ export const constantRoutes = [
       name: 'control',
       component: () => import('@/views/control/control.vue'),
       meta: { title: 'control', icon: 'table' }
-    },{
-      path: 'draw',
-      name: 'draw',
-      component: () => import('@/views/draw/draw.vue'),
-      meta: { title: 'draw', icon: 'table' }
     },{
       path: 'multiMap',
       name: 'multiMap',

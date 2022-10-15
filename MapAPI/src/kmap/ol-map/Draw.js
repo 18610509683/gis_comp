@@ -4,6 +4,7 @@ import OLDraw from 'ol/interaction/Draw'
 import * as format from 'ol/format'
 import DrawFeatureLayer from './DrawFeatureLayer'
 import KBaseObject from './KBaseObject'
+import * as olProj from 'ol/proj';
 /**
  * @description KMap.Draw 画图工具类
  */
@@ -53,15 +54,6 @@ class Draw extends KBaseObject{
       });
       vm.map.addInteraction(vm.draw)
     }
-    vm.draw.on('drawend',function(e){
-      var oljson = new format.GeoJSON()
-      var feature = e.feature
-      // var json = oljson.writeFeaturesObject([feature])
-      // var wkt = new format.WKT().writeFeature(feature,{
-      //   featureProjection:"EPSG:3857",
-      //   dataProjection:"EPSG:4326"
-      // })
-    })
   }
 
 	/**
@@ -123,28 +115,12 @@ class Draw extends KBaseObject{
 			vm.featureCanDel = false
 		}
 	}
-
-	/**
-   * @description 销毁
-   * @memberof Draw
-  */
-  destory(){
-    const vm = this
-		if(vm.draw) {
-			vm.map.removeInteraction(vm.draw)
-			vm.geoType = null
-			vm.draw = null
-		}
-		vm.clear()
-	}
-
   /**
   * @description 清空图层
   * @memberof Draw
   */
   clear(){
     const vm = this
-		vm.map.removeLayer(vm.layer)
 		vm.source.clear()
 	}
 
@@ -184,6 +160,40 @@ class Draw extends KBaseObject{
         vm.source.removeFeature(feature)
       }
     })
+  }
+
+  drawEnd(callback){
+    const vm = this;
+    vm.draw.on('drawend',function(e){
+      var oljson = new format.GeoJSON()
+      var feature = e.feature
+      var geo = feature.getGeometry()
+      var type = geo.getType();
+      let coordinates = null;
+      if(type == 'Point'){
+        coordinates = olProj.transform( geo.getCoordinates(),vm.mapInstance.getProjection(),"EPSG:4326")
+      }
+      if(type == 'LineString'){
+        coordinates = [];
+        geo.getCoordinates().forEach(function(item){
+          let coordinate = olProj.transform(item,vm.mapInstance.getProjection(),"EPSG:4326")
+          coordinates.push(coordinate)
+        })
+      }
+      if(type == 'Polygon'){
+        coordinates = [];
+        geo.getCoordinates()[0].forEach(function(item){
+          let coordinate = olProj.transform(item,vm.mapInstance.getProjection(),"EPSG:4326")
+          coordinates.push(coordinate)
+        })
+      }
+      callback({type:type,coordinates:coordinates})
+    })
+  }
+  destory(){
+    const vm = this
+    vm.map.removeInteraction(vm.draw)
+    vm.draw = null
   }
 }
 export default Draw
