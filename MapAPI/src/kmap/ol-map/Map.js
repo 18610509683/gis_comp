@@ -1048,5 +1048,17 @@ class Map {
 		}
 		this.map.un(eventName,callback)
 	}
+	setMarkerLayerZoomInfo(minZoom,maxZoom){
+		this.markerLayer.setMaxZoom(maxZoom);
+		this.markerLayer.setMinZoom(minZoom);
+	}
+	setPolylineLayerZoomInfo(minZoom,maxZoom){
+		this.polylineLayer.setMaxZoom(maxZoom);
+		this.polylineLayer.setMinZoom(minZoom);
+	}
+	setPolygonLayerZoomInfo(minZoom,maxZoom){
+		this.polygonLayer.setMaxZoom(maxZoom);
+		this.polygonLayer.setMinZoom(minZoom);
+	}
 }
 export default Map

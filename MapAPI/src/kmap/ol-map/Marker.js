@@ -29,13 +29,13 @@ class Marker extends KBaseObject{
   constructor(lng,lat,url,offsetX,offsetY,width,height,param,mapInstance = null){
 		super(mapInstance)
 		const vm = this
-    //对于必填的参数进行验证
+    	//对于必填的参数进行验证
 		vm.point = new Point(proj.fromLonLat([lng,lat]))
-    let marker = new Feature({
-      geometry: vm.point,
-      properties: null
-    })
-    vm.marker = marker
+			let marker = new Feature({
+			geometry: vm.point,
+			properties: null
+		})
+    	vm.marker = marker
 		vm.source = vm.mapInstance.markerLayer.getSource()
 		if(param && param.source){
 			vm.source = param.source
@@ -633,27 +633,27 @@ class Marker extends KBaseObject{
 		overlay.setPosition(proj.fromLonLat(coordinate))
 	}
 
-  /**
-   * @description 设置挂载的DOM可变长度的,
-   * @param {DOM} content DOM 挂载到Map的DOM元素
-   * @param {number} offsetY DOM元素在地图上Y偏移,向上为负,向下为正
-   * @memberof Marker
-   */
-  setContentChangeAbleWidth(content,offsetY){
-		const vm = this
-		let overlay = new Overlay({
-				element: content,
-				positioning:"bottom-center",
-				offset:[0,offsetY]
-		})
-		vm.contentInfo.content = content
-		vm.contentInfo.offsetX = 0
-		vm.contentInfo.offsetY = offsetY
-		vm.contentInfo.overlay = overlay
-		vm.contentInfo.show = true
-		vm.map.addOverlay(overlay)
-		let coordinate = vm.lngLat
-		overlay.setPosition(proj.fromLonLat(coordinate))
-  }
+	/**
+	 * @description 设置挂载的DOM可变长度的,
+	 * @param {DOM} content DOM 挂载到Map的DOM元素
+	 * @param {number} offsetY DOM元素在地图上Y偏移,向上为负,向下为正
+	 * @memberof Marker
+	 */
+	setContentChangeAbleWidth(content,offsetY){
+			const vm = this
+			let overlay = new Overlay({
+					element: content,
+					positioning:"bottom-center",
+					offset:[0,offsetY]
+			})
+			vm.contentInfo.content = content
+			vm.contentInfo.offsetX = 0
+			vm.contentInfo.offsetY = offsetY
+			vm.contentInfo.overlay = overlay
+			vm.contentInfo.show = true
+			vm.map.addOverlay(overlay)
+			let coordinate = vm.lngLat
+			overlay.setPosition(proj.fromLonLat(coordinate))
+	}
 }
 export default Marker
