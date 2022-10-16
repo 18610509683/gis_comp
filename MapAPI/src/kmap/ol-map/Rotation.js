@@ -4,14 +4,14 @@ class Rotation extends KBaseObject{
     constructor(mapInstance = null){
         super(mapInstance)
         const vm = this
-        debugger
         vm.init()
     }
     init(){
-        const id = Common.createUUID()
         const vm = this
+        const id = Common.createUUID()
+        vm.id = id
         var mapInstance = this.mapInstance //地图map对象
-        var map = mapInstance.Map
+        var map = vm.map
         var dom = mapInstance.getTarget()
         var div = document.createElement('div')
         div.classList.add('brightmap2d-rotate-control-custom')
@@ -37,8 +37,9 @@ class Rotation extends KBaseObject{
     }
 
 	rotateCss(){
-		var css = "rotate("+that.rotate+"rad)"
-		document.getElementById('rotate-center'+id).style.transform = css
+        var vm = this
+		var css = "rotate("+vm.rotate+"rad)"
+		document.getElementById('rotate-center'+vm.id).style.transform = css
 	}
 }
 export default Rotation
