@@ -12,7 +12,7 @@ export default {
     this.createMap()
     //使用自定义图层---并不是默认的图层
     let layer = new KMap.VectorLayer('marker2',KMap.Common.MarkerLayerZIndex,{minxZoom:4,maxZoom:16})
-    window.source1 = layer.source()
+    window.source1 = layer.source
   },
   created() {
   },
@@ -20,7 +20,9 @@ export default {
     createMap() {
         KMap.Common.ShowLevel = [3,22]
         KMap.Common.ShowToolbarControl = false
-        window.map = new KMap.Map("map",8,113.27,23.45)
+        window.map = new KMap.Map("map",8,113, 23)
+        var url = "http://47.107.126.107:9000/map/hefei/{z}/{x}/{y}.png"
+        this.layer = new KMap.BaiDuLayer(url,{minZoom:17,maxZoom:21})
     },
     //添加Marker
     addMarker(){

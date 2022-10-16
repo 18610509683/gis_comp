@@ -31,3 +31,58 @@
   right:0.5em;
   bottom: 0.5em;
 }
+/*2D视图中添加自定义视图旋转控制器的样式*/
+.brightmap2d-rotate-control-custom {
+  position: absolute;
+  bottom: 90px;
+  right: 9px;
+  width: 52px;
+  height: 54px;
+  background: url(~@/kmap/api-resource/images/rotate.png) 0% 0% / 266px no-repeat;
+}
+
+.center2d-button-custom {
+  position: absolute;
+  outline: none;
+  border: none;
+  background: url(~@/kmap/api-resource/images/rotate.png) -56px -4px / 266px no-repeat;
+  cursor: pointer;
+  left: 19px;
+  top: 4px;
+  width: 14px;
+  height: 44px;
+  transform: rotate(0deg);
+}
+
+.right2d-button-custom {
+  position: absolute;
+  outline: none;
+  border: none;
+  background: url(~@/kmap/api-resource/images/rotate.png) -75px -5px / 266px no-repeat;
+  right: 2px;
+  top: 5px;
+  width: 15px;
+  height: 42px;
+  transform: scaleX(-1);
+}
+
+.left2d-button-custom {
+  position: absolute;
+  outline: none;
+  border: none;
+  background: url(~@/kmap/api-resource/images/rotate.png) -75px -5px / 266px no-repeat;
+  left: 2px;
+  top: 5px;
+  width: 15px;
+  height: 42px;
+}
+
+.left2d-button-custom:hover {
+  cursor: pointer;
+  background: url(~@/kmap/api-resource/images/rotate.png) -89px -5px / 266px no-repeat;
+}
+
+.right2d-button-custom:hover {
+  cursor: pointer;
+  background: url(~@/kmap/api-resource/images/rotate.png) -89px -5px / 266px no-repeat;
+}

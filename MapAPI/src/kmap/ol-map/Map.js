@@ -13,6 +13,7 @@ import VectorLayer from './VectorLayer'
 import LT2DMapConfig from '../config/LT2DMapConfig'
 import * as Extent from 'ol/extent'
 import Overlay  from 'ol/Overlay'
+import Rotation from './Rotation'
 /**
  * @description KMap.Map 地图类
 */
@@ -137,6 +138,7 @@ class Map {
 			map.addLayer(vm.polyLineLayer)
 			map.addLayer(vm.polygonLayer)
 			map.addLayer(vm.labelLayer)
+			new Rotation()
 		})
 	}
 
