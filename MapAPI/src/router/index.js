@@ -54,6 +54,12 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     },
     {
+      path: 'info',
+      name: 'info',
+      component: () => import('@/views/info/info.vue'),
+      meta: { title: '综合例子-基础信息', icon: 'table' }
+    },
+    {
       path: 'zonghe',
       name: 'zonghe',
       component: () => import('@/views/zonghe/zonghe.vue'),

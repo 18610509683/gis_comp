@@ -6,8 +6,6 @@
       <el-button size="small" type="primary" round @click="addGaoDeOffline">高德在线</el-button>
       <el-button size="small" type="primary" round @click="addBaiduOffline">百度离线</el-button>
       <el-button size="small" type="primary" round @click="addWGS84Offline">WGS84 wmts 离线</el-button>
-      <el-button size="small" type="primary" round @click="getCenterAndZoom">获取中心点坐标与层级</el-button>
-      <el-button size="small" type="primary" round @click="GetCoordinates">{{text}}</el-button>
     </div>
   </div>
 </template>

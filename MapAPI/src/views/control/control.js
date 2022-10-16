@@ -1,4 +1,5 @@
 let map = null
+import * as KMap from '@/kmap/ol-map/KMap'
 export default {
   name: 'apiUse',
   data() {
