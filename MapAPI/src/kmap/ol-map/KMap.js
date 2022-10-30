@@ -17,6 +17,7 @@ import CustomLayer from './CustomLayer'
 import BaiDuLayer from './BaiDuLayer'
 import WMTSLayer from './WMTSLayer'
 import VectorLayer from './VectorLayer'
+import JsonLoadLayer from './JsonLoadLayer'
 import XYZLayer from './XYZLayer'
 import StaticImageLayer from './StaticImageLayer'
 export {
@@ -40,5 +41,6 @@ export {
   WMTSLayer,
   XYZLayer,
   StaticImageLayer,
-  VectorLayer
+  VectorLayer,
+  JsonLoadLayer
 }

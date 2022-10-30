@@ -104,6 +104,12 @@ export const constantRoutes = [
       component: () => import('@/views/multiMap/multiMap.vue'),
       meta: { title: '多地图', icon: 'table' }
     },
+    {
+      path: 'jsonLayer',
+      name: 'jsonLayer',
+      component: () => import('@/views/jsonLayer/jsonLayer.vue'),
+      meta: { title: 'GeoJson', icon: 'table' }
+    }
     ]
   },
 

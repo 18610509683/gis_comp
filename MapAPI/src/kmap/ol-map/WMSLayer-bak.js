@@ -3,32 +3,26 @@ import ImageWMS from 'ol/source/ImageWMS'
 import {GeoJSON,WFS} from 'ol/format'
 import * as filter from 'ol/format/filter'
 import * as extent from 'ol/extent'
-import KBaseObject from './KBaseObject'
+import LTBaseObject from './LTBaseObject'
 import Projection from 'ol/proj/Projection'
 import TileWMS from 'ol/source/TileWMS'
 import Tile from 'ol/layer/Tile'
-import JsonLoadLayer from './JsonLoadLayer'
 /**
  * @description LTMap.WMSLayer WMS图层类
 */
-class WMSLayer extends KBaseObject{
+class WMSLayer extends LTBaseObject{
 	/**
 	 * @description 构造函数
 	 * @param {String} url wms图层服务地址
 	 * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
 	 * @memberof WMSLayer
 	 */
-	constructor(url,layerName,options = {},mapInstance = null){
+	constructor(url,layerName,mapInstance = null){
     super(mapInstance)
 		const vm = this
 		vm.format = "image/png"
-		vm.url = url
-		if(options.filter){
-			vm.filter = options.filter
-		}
-		vm.layerName = layerName
-		vm.initImageLayer(url+"/wms",layerName)
-		vm.jsonLoadLayer = new JsonLoadLayer()
+		vm.initImageLayer(url,layerName)
+		// vm.initTileLayer(url,layerName)
   }
 	
 	/**
@@ -44,20 +38,17 @@ class WMSLayer extends KBaseObject{
 			axisOrientation: 'neu',
 			global: true
 		})
-		let params = {
-			'FORMAT':vm.format,
-			"LAYERS": layerName,
-			"STYLES": '',
-			'VERSION': '1.1.1',
-			"exceptions": 'application/vnd.ogc.se_inimage'
-		}
-		if(vm.filter){
-			params.CQL_FILTER = vm.filter
-		}
+		
     vm.source = new ImageWMS({
       url: url,
 			ratio: 1,
-      params: params,
+      params: {
+				'FORMAT':vm.format,
+        "LAYERS": layerName,
+				"STYLES": '',
+				'VERSION': '1.1.1',
+				"exceptions": 'application/vnd.ogc.se_inimage'
+      },
       serverType: 'geoserver',
       crossOrigin: 'anonymous',
 			projection:projection
@@ -97,7 +88,8 @@ class WMSLayer extends KBaseObject{
 				tiled: true,
 				"STYLES": '',
 				"LAYERS": layerName,
-				"exceptions": 'application/vnd.ogc.se_inimage'
+				"exceptions": 'application/vnd.ogc.se_inimage',
+				// tilesOrigin: -124.73142200000001 + "," + 24.955967
 			},
 			projection:projection
 		})
@@ -162,7 +154,7 @@ class WMSLayer extends KBaseObject{
 	 */
 	update(data) {
 		const vm = this
-		if(data!=null && data!="" && data!=undefined && vm.state) {
+		if(data!=null && data!="" && data!=undefined && state) {
 			vm.source.updateParams({
 				"CQL_FILTER": data
 			})
@@ -178,54 +170,82 @@ class WMSLayer extends KBaseObject{
 	 * @description 缩放到过滤后的地图要素对应范围
 	 * @memberof WMSLayer
 	 */
-	zoomTo(cqlfilter) {
+	zoomTo() {
     const vm = this
 		//组装查询过滤条件
-		vm.getLayerPropertyList(cqlfilter,function(res){
-			let features = new GeoJSON().readFeatures(res,{dataProjection:"EPSG:4326",featureProjection:"EPSG:3857"})
-			vm.panTo(features)
-		})
-	}
-	flashFeature(cqlfilter){
-		const vm = this
-		//组装查询过滤条件
-		vm.getLayerPropertyList(cqlfilter,function(res){
-			let features = new GeoJSON().readFeatures(res,{dataProjection:"EPSG:4326",featureProjection:"EPSG:3857"})
-			if(features.length >0){
-				// vm.panTo(features)
-				vm.jsonLoadLayer.addNewOne(features[0])
-			}
-		})
-	}
-	removeFlashFeature(){
-		const vm = this
-		if(vm.jsonLoadLayer){
-			vm.jsonLoadLayer.removeAll()
+		let cqlfilter = vm.source.getParams().CQL_FILTER
+		if(cqlfilter == null){
+			//缩放到图层范围
+		}
+		else{
+			let cqlfilters = cqlfilter.split("=")
+			//实现思路为通过WFS进行属性查询，查找到要素后再缩放到该要素
+			let wfsurl = url.substr(0, url.lastIndexOf("/") + 1 ) + "wfs"
+			let featureRequest = new WFS().writeGetFeature({
+        //srsName: 'EPSG:3857',
+        //featureNS: 'http://openstreemap.org',
+        //featurePrefix: 'skyline',
+        featureTypes: [layer],
+        outputFormat: 'application/json',
+        filter: filter.equalTo(cqlfilters[0],cqlfilters[1])
+			})
+			let myfilter = WFS.writeFilter(filter.equalTo(cqlfilters[0],cqlfilters[1]))
+			$.ajax({
+				type: 'get',
+				url: wfsurl,
+				data: {
+					service: 'WFS',
+          request: 'GetFeature',
+          typeNames: layer,//查询图层
+          filter:new XMLSerializer().serializeToString(myfilter),//查询条件
+          outputFormat: 'application/json'
+				},
+				async : false,
+				success: function(res) {
+					let features = new GeoJSON().readFeatures(res)
+					  //let coordinateArray = new Array();
+					  let extentBound = new extent.createEmpty()
+						for(let i=0; i<features.length; i++) {
+							/*let coordinates =  features[i].getGeometry().getCoordinates();//由多个分部构成，与Polyline函数生成的结构不一致
+							for(j=0; j<coordinates.length; j++) {
+								let pathcoordinates = coordinates[j];
+								for(k = 0 ; k < pathcoordinates.length ; k ++)
+								coordinateArray.push(pathcoordinates[k]);
+							}*/
+							extentBound = new extent.extend(extentBound,features[i].getGeometry().getExtent());
+						}
+						//let extentBound = new extent.boundingExtent(coordinateArray);
+						if(features.length > 0){
+							vm.map.getView().fit(extentBound,{
+								duration: 1
+							})
+						}
+				},
+				error: function(e) {
+					console.log("failed")
+				}
+			})
+			/*fetch(wfsurl, {
+				method: 'POST',
+				body: new XMLSerializer().serializeToString(featureRequest)
+			}).then(function(response) {
+				return response.json();
+			}).then(function(json) {
+				let features = new GeoJSON().readFeatures(json);
+				let extentBound = new extent.createEmpty();
+				for(let i=0; i<features.length; i++) {
+					extentBound = new extent.extend(extentBound,features[i].getGeometry().getExtent());
+				}
+				if(features.length > 0)
+				{
+					map.getView().fit(extentBound,{
+						duration: 1
+					});
+				}
+			});*/
 		}
 	}
-	panTo(features){
-    const vm = this
-    var extents = features
-    .map(function (f) { return f.getGeometry().getExtent() })
-    let extent = []
-    extent = extents[0]
-    for(let i = 1;i<extents.length;i++){
-      let subExtent = extents[i]
-      if(subExtent[0]<extent[0]){
-        extent[0] = subExtent[0]
-      }
-      if(subExtent[1]<extent[1]){
-        extent[1] = subExtent[1]
-      }
-      if(subExtent[2]>extent[2]){
-        extent[2] = subExtent[2]
-      }
-      if(subExtent[3]>extent[3]){
-        extent[3] = subExtent[3]
-      }
-    }
-    vm.map.getView().fit(extent, vm.map.getSize())
-  }
+	
 	/**
 	 *@description 根据经纬度坐标查询坐标点所在位置的要素
 	 *@param coordinate LTMap.LngLat格式的经纬度 必填
@@ -273,13 +293,7 @@ class WMSLayer extends KBaseObject{
 		}
 		return result
 	}
-	removeAll(){
-		const vm = this
-		vm.update("1=0")
-		if(vm.jsonLoadLayer){
-			vm.jsonLoadLayer.removeAll()
-		}
-	}
+
 	/**
 	 *@description 设置鼠标悬停在元素上时的样式
 	 *@param {String} cursorStyle 鼠标样式("default"默认指针,"pointer"小手,
@@ -309,46 +323,5 @@ class WMSLayer extends KBaseObject{
 			}
 		})
 	}
-	getLayerPropertyList(propertyNames,callback){
-		const vm = this
-		let totalUrl = vm.url+'/ows?service=WFS&version=1.0.0&request=GetFeature&typeName='+vm.layerName+'&outputFormat=application/json&'+propertyNames
-		debugger
-		fetch(totalUrl,{
-			method: 'GET',
-		})
-		.then((response) => response.json())
-		.then((json) => {
-			callback(json)
-		})
-		.catch((error) => {
-				console.log(error)
-		})
-	}
-	getFeatureInfo(){
-		const vm = this
-		vm.map.on('click', function (evt) {
-			const coordinate = evt.coordinate
-			const viewResolution = /** @type {number} */ (vm.map.getView().getResolution());
-			const url = vm.source.getFeatureInfoUrl(
-				evt.coordinate,
-				viewResolution,
-				'EPSG:3857',
-				{'INFO_FORMAT': 'application/json'}
-			);
-			if (url) {
-				fetch(url)
-					.then((response) => response.text())
-					.then((html) => {
-						const res = JSON.parse(html)
-						let features = new GeoJSON().readFeatures(res,{dataProjection:"EPSG:4326",featureProjection:"EPSG:3857"})
-						if(features.length >0){
-							vm.jsonLoadLayer.addNewOne(features[0])
-							vm.jsonLoadLayer.infoWindowOpen(coordinate,features[0])
-						}
-					});
-			}
-		});
-	}
-
 }
 export default WMSLayer
