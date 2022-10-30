@@ -4,13 +4,13 @@ import XYZ from 'ol/source/XYZ'
 import Tile from 'ol/layer/Tile'
 import Common from './Common'
 /**
- * @description LTMap.XYZLayer XYZ图层类
+ * @description KMap.XYZLayer XYZ图层类
 */
 class XYZLayer extends LTBaseObject{
 	/**
 	 * @description 构造函数
 	 * @param {String} url XYZ图层服务地址
-	 * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+	 * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
 	 * @memberof XYZLayer
 	 */
 	constructor(url,options,mapInstance = null){

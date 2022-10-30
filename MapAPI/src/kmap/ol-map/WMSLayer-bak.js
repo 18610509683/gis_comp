@@ -8,13 +8,13 @@ import Projection from 'ol/proj/Projection'
 import TileWMS from 'ol/source/TileWMS'
 import Tile from 'ol/layer/Tile'
 /**
- * @description LTMap.WMSLayer WMS图层类
+ * @description KMap.WMSLayer WMS图层类
 */
 class WMSLayer extends LTBaseObject{
 	/**
 	 * @description 构造函数
 	 * @param {String} url wms图层服务地址
-	 * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+	 * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
 	 * @memberof WMSLayer
 	 */
 	constructor(url,layerName,mapInstance = null){
@@ -248,7 +248,7 @@ class WMSLayer extends LTBaseObject{
 	
 	/**
 	 *@description 根据经纬度坐标查询坐标点所在位置的要素
-	 *@param coordinate LTMap.LngLat格式的经纬度 必填
+	 *@param coordinate KMap.LngLat格式的经纬度 必填
 	 *@returns 查询到要素的结果集合，json数组格式，json中包含对应要素的所有字段名和字段值
 	*/
 	getFeaturesByCoor(coordinate){
@@ -256,7 +256,7 @@ class WMSLayer extends LTBaseObject{
 		//将经纬度坐标转平面坐标
 		coordinate = vm.mapInstance.lnglatToPixel(coordinate)
     //将LT平面坐标转换为OL的平面坐标
-		coordinate = Common.LTMapPixel2MapPixel(coordinate)
+		coordinate = Common.KMapPixel2MapPixel(coordinate)
 		let resolution = vm.mapInstance.getResolution()
 		let projection = vm.mapInstance.getProjection()
     let url = vm.source.getGetFeatureInfoUrl(coordinate, resolution, projection,

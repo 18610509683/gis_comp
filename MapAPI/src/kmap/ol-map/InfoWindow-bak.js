@@ -26,7 +26,6 @@ class InfoWindow extends KBaseObject{
 
   initInfoWindow(content,position,offsetX,offsetY,type){
     const vm = this
-		vm.contentDom = content
     if(type == "click") {
       vm.infoWindow = vm.mapInstance.infoWindow_click
       vm.infoWindowBox = document.getElementById("infowindow-click")
@@ -144,18 +143,13 @@ class InfoWindow extends KBaseObject{
 		let content = vm.infoWindowBox.innerHTML
 		return content
 	}
-	getContentDom(){
-		const vm = this
-		return vm.contentDom
-	}
+
 	/**
 	 * 设置弹窗内容--暂无该方法
 	*/
 	setContent(content) {
     const vm = this
-		vm.contentDom = content
-		vm.content = content.outerHTML
-		vm.infoWindowBox.innerHTML = vm.content
+		vm.infoWindowBox.innerHTML = content.outerHTML
 	}
 
 	/**
@@ -174,8 +168,7 @@ class InfoWindow extends KBaseObject{
 	*/
 	setPosition(position) {
     const vm = this
-		vm.position = position
-		vm.infoWindow.setPosition(proj.fromLonLat(Common.KMapLngLat2MapLngLat(vm.position)))
+		vm.infoWindow.setPosition(proj.fromLonLat(Common.KMapLngLat2MapLngLat(position)))
 	}
 
 	/**

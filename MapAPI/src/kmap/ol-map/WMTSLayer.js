@@ -11,7 +11,7 @@ class WMTSLayer extends LTBaseObject{
 	/**
 	 * @description 构造函数
 	 * @param {String} url wms图层服务地址
-	 * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+	 * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
 	 * @memberof WMSLayer
 	 */
 	constructor(url,options,mapInstance = null){

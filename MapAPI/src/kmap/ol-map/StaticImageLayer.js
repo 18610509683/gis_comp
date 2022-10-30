@@ -5,13 +5,13 @@ import Projection from 'ol/proj/Projection';
 import Static from 'ol/source/ImageStatic';
 import Common from './Common'
 /**
- * @description LTMap.StaticImageLayer StaticImage图层类
+ * @description KMap.StaticImageLayer StaticImage图层类
 */
 class StaticImageLayer extends LTBaseObject{
 	/**
 	 * @description 构造函数
 	 * @param {String} url StaticImage图层服务地址
-	 * @param {LTMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
+	 * @param {KMap.Map} [mapInstance=null] map对象，单地图的时候可不传，多地图时候需要传
 	 * @memberof StaticImageLayer
 	 */
 	constructor(url,options,mapInstance = null){

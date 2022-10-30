@@ -9,6 +9,7 @@ import Common from './Common'
 import InfoWindow from './InfoWindow'
 import LngLat from './LngLat'
 import { transform } from 'ol/proj'
+import Fill from 'ol/style/Fill'
 class JsonLoadLayer extends KBaseObject{
   constructor(geojson,options,mapInstance = null){
     super(mapInstance)
@@ -32,12 +33,18 @@ class JsonLoadLayer extends KBaseObject{
         color: '#007aff',
         width: 4,
       }),
+      fill:new Fill({
+        color:'rgba(241,242,236,0.8)',
+      })
     })
     const flashStyle = new Style({
       stroke: new Stroke({
         color: '#00ffff',
         width: 5,
-        zIndex:999
+        zIndex:999,
+        fill:new Fill({
+          color:'rgba(241,242,236,0.8)',
+        })
       }),
     })
     vm.style = style
@@ -176,6 +183,7 @@ class JsonLoadLayer extends KBaseObject{
     })
   }
   infoWindowOpen(coordinate,feature){
+    debugger
     const vm = this
     const key = vm.key
     let lnglat = transform(coordinate,"EPSG:3857","EPSG:4326")
@@ -189,6 +197,7 @@ class JsonLoadLayer extends KBaseObject{
     const vm = this
     var obj = feature.values_
     var html = ''
+    debugger
     for(let i = 0;i<key.length;i++){
       let item = key[i]
       let label = item.label
