@@ -74,6 +74,12 @@ export const constantRoutes = [
       name: 'marker',
       component: () => import('@/views/marker/marker.vue'),
       meta: { title: '综合例子-点交互', icon: 'table' }
+    },
+    {
+      path: 'text',
+      name: 'text',
+      component: () => import('@/views/text/text.vue'),
+      meta: { title: '综合例子-文本标记', icon: 'table' }
     }
     // ,{
     //   path: 'customLayer',

@@ -20,6 +20,7 @@ import VectorLayer from './VectorLayer'
 import JsonLoadLayer from './JsonLoadLayer'
 import XYZLayer from './XYZLayer'
 import StaticImageLayer from './StaticImageLayer'
+import Label from './Label'
 export {
   Info,
   Map,
@@ -42,5 +43,6 @@ export {
   XYZLayer,
   StaticImageLayer,
   VectorLayer,
-  JsonLoadLayer
+  JsonLoadLayer,
+  Label
 }
