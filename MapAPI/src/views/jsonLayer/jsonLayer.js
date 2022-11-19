@@ -4,7 +4,16 @@ export default {
   data() {
     return {
       marker:null,
-      infoWindowShow:false
+      infoWindowShow:false,
+      key:[{
+        cnName:"图形长度",
+        label:"Shape_Leng"
+      },
+      {
+        cnName:"图形面积",
+        label:"Shape_Area"
+      }
+    ]
     }
   },
   mounted() {
@@ -23,6 +32,7 @@ export default {
     addJson(){
       const json = require('@/kmap/api-resource/data/shp-3857.json')
       const layer = new KMap.JsonLoadLayer(json,{projection:"EPSG:3857"})
+      layer.infoWindow(this.key)
     }
   }
 }

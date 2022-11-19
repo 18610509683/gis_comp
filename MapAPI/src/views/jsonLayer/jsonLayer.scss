@@ -57,3 +57,30 @@ html{
   height:600px;
   z-index: 999;
 }
+.infoBox{
+  background-color: #ffffff;
+  background-color: #ffffff;
+  padding: 8px;
+  border-radius: 8px;
+}
+table.reference, table.tecspec {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+table.reference tr:nth-child(odd) {
+  background-color: #f6f4f0;
+}
+table.reference tr:nth-child(even) {
+  background-color: #fff;
+}
+table.reference td {
+  line-height: 2em;
+  min-width: 200px;
+  border: 1px solid #d4d4d4;
+  padding: 5px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  vertical-align: top;
+}

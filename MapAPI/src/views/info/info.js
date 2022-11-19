@@ -20,7 +20,7 @@ export default {
     createMap() {
         //KMap.Common.UseWGS84OnlineLayer = true
         KMap.Common.UseBaiDuOnlineLayer = true
-        KMap.Common.ShowLevel = [3,16]
+        KMap.Common.ShowLevel = [3,22]
         KMap.Common.ShowToolbarControl = false
         window.map = new KMap.Map("map",8,113.27,23.45)
     },
@@ -68,6 +68,12 @@ export default {
       if(window.map){
         let zoom = window.map.getZoom()
         alert("层级Zoom为"+zoom)
+      }
+    },
+    //设置每次缩放zoom的改变量
+    setWheelZoomSize(){
+      if(window.map){
+        window.map.setWheelZoomSize(1)
       }
     }
   }

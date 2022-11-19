@@ -8,6 +8,7 @@
       <el-button size="small" type="primary" round @click="GetCoordinates">{{text}}</el-button>
       <el-button size="small" type="primary" round @click="getCenter">获取中心点</el-button>
       <el-button size="small" type="primary" round @click="getZoom">获取层级</el-button>
+      <el-button size="small" type="primary" round @click="setWheelZoomSize">设置每次缩放zoom的改变量(1)</el-button>
     </div>
   </div>
 </template>

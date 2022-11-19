@@ -54,70 +54,123 @@ class Map {
 	 * @memberof Map
 	 */
 	scaleY = 1
-  /**
-   * @param {string} id DOM元素ID
-   * @param {number} zoomLevel 地图层级
-   * @param {number} lng 纬度
-   * @param {number} lat 经度
-   * @description Map初始化方法
-	 * @constructor
-  */
-  constructor(id,zoomLevel,lng,lat){
-	const vm = this
-	Map.Instance = this
-    vm.baseLayer = this.initBaseLayer()
-	Common.checkLngLat(lng,lat)
-    let view = new View({
-      center: proj.fromLonLat([lng,lat]),
-      zoom: zoomLevel,
-      minZoom: Common.ShowLevel[0],
-      maxZoom: Common.ShowLevel[1],
-    })
-	this.view = view
-    this.map = new OLMap({
-      interactions: interaction.defaults().extend([
-      new interaction.DragRotateAndZoom()]),
-      target: id,
-      layers: [vm.baseLayer],//vm.baseLayer
-      view: view,
-      control: []
-    })
-	//初始化插件
-	this.initBaseControl()
-	//初始化业务图层
-	this.initBusinessLayer()
-	//初始化地图信息弹窗
-	this.initInfoWindow()
-	//初始化地图基础事件
-	this.initMapBaseEvent()
-  }
-	
-  /**
-	 * 初始化地图底图图层
-   * @return {array}
-	 * @memberof Map
-  */
+	/**
+	 * @param {string} id DOM元素ID
+	 * @param {number} zoomLevel 地图层级
+	 * @param {number} lng 纬度
+	 * @param {number} lat 经度
+	 * @description Map初始化方法
+		 * @constructor
+	 */
+	constructor(id,zoomLevel,lng,lat){
+		const vm = this
+		Map.Instance = this
+		vm.baseLayer = this.initBaseLayer()
+		Common.checkLngLat(lng,lat)
+		let view = new View({
+		center: proj.fromLonLat([lng,lat]),
+		zoom: zoomLevel,
+		minZoom: Common.ShowLevel[0],
+		maxZoom: Common.ShowLevel[1],
+		})
+		this.view = view
+		this.map = new OLMap({
+		interactions: interaction.defaults({mouseWheelZoom:false}).extend([
+		new interaction.DragRotateAndZoom()]),
+		target: id,
+		layers: [vm.baseLayer],//vm.baseLayer
+		view: view,
+		control: []
+		})
+		//初始化插件
+		this.initBaseControl()
+		//初始化业务图层
+		this.initBusinessLayer()
+		//初始化地图信息弹窗
+		this.initInfoWindow()
+		//初始化地图基础事件
+		this.initMapBaseEvent()
+	}
+		
+	/**
+		 * 初始化地图底图图层
+	 * @return {array}
+		 * @memberof Map
+	 */
 	initBaseLayer(){
-		let mapType = null
-		let mapUrl  = null
-		if(Common.UseBaiDuOnlineLayer == true) {
-			//自定义地图
-			mapType = Enum.LayerTypeEnum.BaiDuTile
-			mapUrl =  Common.BaiDuOnlineUrl
+			let mapType = null
+			let mapUrl  = null
+			if(Common.UseBaiDuOnlineLayer == true) {
+				//自定义地图
+				mapType = Enum.LayerTypeEnum.BaiDuTile
+				mapUrl =  Common.BaiDuOnlineUrl
+			}
+			else if(Common.UseWGS84OnlineLayer == true) {
+				//交通地图
+				mapType = Enum.LayerTypeEnum.WGS84Tile
+				mapUrl =  Common.WGS84OnlineUrl 
+			}
+			else {
+				//高德地图
+				mapType = Enum.LayerTypeEnum.GaoDeTile
+				mapUrl =  Common.GaoDeOnlineUrl
+			}
+			let object = new SimpleLayer(mapUrl,mapType)
+		return object.layer
+	}
+	/*
+	element：绑定事件的元素
+	upCallback：向上滚动的回调
+	downCallback：向下滚动的回调
+	*/
+	myMousewheel(element, upCallback, downCallback) {
+		// 滚轮事件回调
+		function mousewheelCallback(e) {
+		// 事件对象兼容性处理
+		e = e || event
+	
+		/*
+			非 Firefox 浏览器中，wheelDelta > 0 向上滚动，wheelDelta < 0 向下滚动
+			Firefox 浏览器中，detail < 0 向上滚动，detail > 0 向下滚动
+			因为 wheelDelta 和 detail 只会有一个存在，另一个的取值就是 undefined，和 0 比较都返回 false
+			使用或运算符，左右两边一个为 true 就返回 true，都为 false 才返回 false
+		*/
+		if (e.wheelDelta > 0 || e.detail < 0) {
+			// 向上滚动回调
+			upCallback && upCallback(e)
+		} else {
+			// 向下滚动回调
+			downCallback && downCallback(e)
 		}
-		else if(Common.UseWGS84OnlineLayer == true) {
-			//交通地图
-			mapType = Enum.LayerTypeEnum.WGS84Tile
-			mapUrl =  Common.WGS84OnlineUrl 
 		}
-		else {
-			//高德地图
-			mapType = Enum.LayerTypeEnum.GaoDeTile
-			mapUrl =  Common.GaoDeOnlineUrl
+	
+		// 非 Firefox / IE 浏览器绑定滚轮事件
+		element.onmousewheel = mousewheelCallback
+	
+		// IE 浏览器绑定滚轮事件
+		element.attachEvent && element.attachEvent('onmousewheel', mousewheelCallback)
+	
+		// Firefox 浏览器绑定滚轮事件
+		element.addEventListener && element.addEventListener('DOMMouseScroll', mousewheelCallback)
+	}
+  
+	initMouseWheelZoom(){
+		const vm = this
+		if(!vm.wheelZoomSize){
+			vm.wheelZoomSize = 1.0/3
 		}
-		let object = new SimpleLayer(mapUrl,mapType)
-    return object.layer
-  }
+		vm.myMousewheel(vm.map.getTargetElement(),function(event){
+			vm.setZoom(vm.getZoom()+vm.wheelZoomSize)
+			console.log(vm.getZoom())
+		},function(evnet){
+			vm.setZoom(vm.getZoom()-vm.wheelZoomSize)
+			console.log(vm.getZoom())
+		})
+	}
+	setWheelZoomSize(size){
+		const vm = this
+		vm.wheelZoomSize = size
+	}
 	/**
 	 * @description 初始化业务图层
 	 * @memberof Map
@@ -139,6 +192,7 @@ class Map {
 			map.addLayer(vm.polygonLayer)
 			map.addLayer(vm.labelLayer)
 			new Rotation()
+			vm.initMouseWheelZoom()
 		})
 	}
 
