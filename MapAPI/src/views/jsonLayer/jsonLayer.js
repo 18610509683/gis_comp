@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     createMap() {
-        KMap.Common.UseWGS84OnlineLayer = true;
+        // KMap.Common.UseWGS84OnlineLayer = true;
         KMap.Common.ShowLevel = [1,25];
         KMap.Common.ShowToolbarControl = false;
         window.map = new KMap.Map("map",16,117.81502899727046,32.193969537026035);

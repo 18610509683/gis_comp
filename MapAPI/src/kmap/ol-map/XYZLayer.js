@@ -1,12 +1,12 @@
 
-import LTBaseObject from './KBaseObject'
+import KBaseObject from './KBaseObject'
 import XYZ from 'ol/source/XYZ'
 import Tile from 'ol/layer/Tile'
 import Common from './Common'
 /**
  * @description KMap.XYZLayer XYZ图层类
 */
-class XYZLayer extends LTBaseObject{
+class XYZLayer extends KBaseObject{
 	/**
 	 * @description 构造函数
 	 * @param {String} url XYZ图层服务地址

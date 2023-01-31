@@ -115,6 +115,12 @@ export const constantRoutes = [
       name: 'jsonLayer',
       component: () => import('@/views/jsonLayer/jsonLayer.vue'),
       meta: { title: 'GeoJson', icon: 'table' }
+    },
+    {
+      path: 'staticImage',
+      name: 'staticImage',
+      component: () => import('@/views/staticImage/staticImage.vue'),
+      meta: { title: '静态图片', icon: 'table' }
     }
     ]
   },
