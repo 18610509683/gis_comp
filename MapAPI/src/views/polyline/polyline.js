@@ -8,9 +8,6 @@ export default {
   },
   mounted() {
     this.createMap()
-    //使用自定义图层---并不是默认的图层
-    let layer = new KMap.VectorLayer('line2',KMap.Common.PolylineLayerZIndex,{minxZoom:4,maxZoom:16})
-    window.source1 = layer.source()
   },
   created() {
   },
@@ -31,6 +28,21 @@ export default {
       vm.polyline1 = vm.createPolyLine(coordinate1,style1);
       vm.polyline2 = vm.createPolyLine(coordinate2,style2)
       vm.polyline3 = vm.createPolyLine(coordinate3,style3)
+    },
+    setLineDashOffset(){
+      const vm = this
+      if(vm.polyline1 == undefined){
+        vm.addPolyLine();
+      }
+      let color = [204, 204, 255, 1];
+      let width = 3;
+      let lineDash = [10,25];
+      let lineDashOffsetMax = 100;
+
+      let color2 = [30,144,255,1];
+      let width2 = 3;
+      let lineDash2 = [0];
+      vm.polyline1.setLineDashOffset({color:color,width:width,lineDash:lineDash,lineDashOffsetMax:lineDashOffsetMax},{color:color2,width:width2,lineDash:lineDash2});
     },
     createPolyLine(coordinate,style){
       let lineArray =  new Array()

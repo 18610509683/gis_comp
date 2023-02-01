@@ -9,6 +9,7 @@
         <el-button size="small" type="primary" round @click="showPolyLine">显示线标记</el-button>
         <el-button size="small" type="primary" round @click="hidePolyLine">隐藏线标记</el-button>
         <el-button size="small" type="primary" round @click="infoWindow">线标记弹窗</el-button>
+        <el-button size="small" type="primary" round @click="setLineDashOffset">流动线样式</el-button>
       </div>
     </div>
   </div>

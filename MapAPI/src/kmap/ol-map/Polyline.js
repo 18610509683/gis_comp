@@ -113,6 +113,7 @@ class Polyline extends KBaseObject{
 			}),
 			zIndex: 0
 		})
+		vm.style = style
 		vm.polyline.setStyle(style)
 	}
 
@@ -278,7 +279,7 @@ class Polyline extends KBaseObject{
 	 * param.offsetY Y轴方向偏移量(正向下，负向上)，选填参数，默认为-25
 	 */
 	infoWindow(param){
-    const vm = this
+    	const vm = this
 		let eventName = "click"
 		vm.polyline.on(eventName,function(e){
 			let lnglat = proj.toLonLat(e.event.coordinate)
@@ -295,6 +296,35 @@ class Polyline extends KBaseObject{
 			})
 			infoWindow.open()
 		})
-  }
+  	}
+
+	setLineDashOffset(vStyle,sStyle){
+		const vm = this;
+		vm.lineDashOffset = 0;
+		//定时赋值
+		setInterval(() => {
+			vm.lineDashOffset = vm.lineDashOffset==vStyle.lineDashOffsetMax ? 0 : vm.lineDashOffset + 2
+			vm.polyline.setStyle(
+				//虚线
+				[
+					new Style({
+						stroke: new Stroke({
+							color: sStyle.color,
+							width: sStyle.width,
+							lineDash:sStyle.lineDash,
+						})
+					}),
+					new Style({
+						stroke: new Stroke({
+							color: vStyle.color,
+							width: vStyle.width,
+							lineDash: vStyle.lineDash,
+							lineDashOffset: vm.lineDashOffset
+						})
+					})
+				]
+			)
+		}, 50)
+	}
 }
 export default Polyline
